@@ -13,10 +13,11 @@ GPIO.setwarnings(False)
 outputVoltage = [0,0,0,0,0]
 
 for i in range(0,5):
-	GPIO.output(isReadyForNextPin,0)
+	GPIO.output(isReadyForNextPin,1)
 	outputVoltage[i] = GPIO.input(readerPin)
 	print(GPIO.input(readerPin))
-	GPIO.output(isReadyForNextPin,1)
+	GPIO.output(isReadyForNextPin,0)
+	sleep(0.01)
 
 
 

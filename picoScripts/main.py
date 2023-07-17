@@ -2,9 +2,9 @@ from machine import ADC, Pin
 import utime
 
 desiredVoltage_adc = ADC(Pin(28)) #should be coupled with 100nF or 1uF on the ADC input to ground.
-desiredVoltage =0;
+desiredVoltage =0; #value of the desired voltage
 def getDesiredVoltage(): #calculates desired voltage based on signal received from the host
-    dv_reading = desiredVoltage_adc.read_u16()
+    dv_reading = desiredVoltage_adc.read_u16() #the reading after the adc
     print("dv_reading: " + str(dv_reading))
     if dv_reading >= 9102:
         desiredVoltage = 18* dv_reading/65535;

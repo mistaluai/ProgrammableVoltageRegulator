@@ -15,6 +15,7 @@ def getDesiredVoltage(): #calculates desired voltage based on signal received fr
 
 isReadyForNext = Pin(22, Pin.IN)
 outputVoltagePin = Pin(21, Pin.OUT)
+isSendingPin = Pin(20,Pin.OUT)
 outputVoltage = 0;
 
 def sendOutputVoltage():
@@ -22,11 +23,14 @@ def sendOutputVoltage():
     #algorithm to make output voltage in binary
     outputVoltageDigital = [1,0,0,1,0]
     for i in outputVoltageDigital:
-        outputVoltagePin.value(i) #feeds bit to the pin
-        print(i)
-        #some algorith to wait for signal to feed the next one
-        while isReadyForNext.value() == 0:
-            utime.sleep(0.01)
+        
+       if isReadyForNext.value()==1:
+        isSendingPin.value(1)
+
+    outputVoltagePin.value(i) #feeds bit to the pin
+    print(i)
+    isSendingPin.value(0)
+    utime.sleep(0.01)
 
 
 

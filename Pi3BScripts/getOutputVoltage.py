@@ -6,7 +6,7 @@ readerPin = 11
 isReadyForNextPin = 13
 
 GPIO.setmode(GPIO.BOARD)
-GPIO.setup(isReadyForNextPin,GPIO.OUT,0)
+GPIO.setup(isReadyForNextPin,GPIO.OUT)
 GPIO.setup(readerPin, GPIO.IN)
 GPIO.setwarnings(False)
 

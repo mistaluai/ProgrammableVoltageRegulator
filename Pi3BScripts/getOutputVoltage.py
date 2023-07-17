@@ -21,7 +21,12 @@ for i in range(0,10):
 	sleep(0.1)
 	GPIO.output(getPin,0)
 
-#algorithm to convert binary to decimal
+outputVoltageDecimal = 0;
+for i in range(0,10):
+		outputVoltageDecimal = outputVoltageDecimal + outputVoltage[i] * 2**(7-i)
+
+print(outputVoltageDecimal)
+
 
 
 

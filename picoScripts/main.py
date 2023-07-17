@@ -13,30 +13,26 @@ def getDesiredVoltage(): #calculates desired voltage based on signal received fr
     else: print("can't provide voltage less than 2.5v")
 #####
 
-isReadyForNext = Pin(22, Pin.IN)
+getterPin = Pin(22, Pin.IN)
 outputVoltagePin = Pin(21, Pin.OUT)
-isSendingPin = Pin(20,Pin.OUT)
 outputVoltage = 0;
 
 def sendOutputVoltage():
+    index = 0;
     outputVoltageDigital = [0,0,0,0,0]
     #algorithm to make output voltage in binary
     outputVoltageDigital = [1,0,0,1,0]
-    for i in outputVoltageDigital:
-
-       if isReadyForNext.value()==1:
-        isSendingPin.value(1)
-
-    outputVoltagePin.value(i) #feeds bit to the pin
-    print(i)
-    while isReadyForNext.value() == 0:
-        isSendingPin.value(0)
-        utime.sleep(0.01)
+    while index<5:
+        if getterPin.value() == 1:
+            outputVoltagePin.value(outputVoltageDigital[index])
+            index++;
+        utime.sleep(0.1)
 
 
 
 while True:
     getDesiredVoltage()
-    #sendOutputVoltage()
-    utime.sleep(0.5)
+    if getterPin.value() == 1:
+        sendOutputVoltage()
+    utime.sleep(0.1)
 

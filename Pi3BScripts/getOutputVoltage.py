@@ -17,7 +17,7 @@ for i in range(0,5):
 	outputVoltage[i] = GPIO.input(readerPin)
 	print(GPIO.input(readerPin))
 	GPIO.output(isReadyForNextPin,1)
-	sleep(0.1)
+	sleep(0.01)
 
-
+GPIO.output(isReadyForNextPin,0)
 

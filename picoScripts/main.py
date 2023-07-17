@@ -25,7 +25,7 @@ def sendOutputVoltage():
         outputVoltagePin.value(i) #feeds bit to the pin
         print(i)
         #some algorith to wait for signal to feed the next one
-        while isReadyForNext == 0:
+        while isReadyForNext.value() == 0:
             utime.sleep(0.01)
 
 

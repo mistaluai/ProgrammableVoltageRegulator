@@ -18,6 +18,7 @@ outputVoltagePin = Pin(21, Pin.OUT)
 outputVoltage = 0;
 
 def sendOutputVoltage():
+    print("output voltage stream start")
     index = 0;
     outputVoltageDigital = [0,0,0,0,0]
     #algorithm to make output voltage in binary
@@ -25,8 +26,9 @@ def sendOutputVoltage():
     while index<5:
         if getterPin.value() == 1:
             outputVoltagePin.value(outputVoltageDigital[index])
-            index++;
+            index = index +1;
         utime.sleep(0.1)
+    print("output voltage stream end")
 
 
 
@@ -35,4 +37,5 @@ while True:
     if getterPin.value() == 1:
         sendOutputVoltage()
     utime.sleep(0.1)
+
 

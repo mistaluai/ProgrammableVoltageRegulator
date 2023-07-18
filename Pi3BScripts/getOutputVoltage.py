@@ -20,6 +20,9 @@ for i in range(0,6):
 	GPIO.output(getPin,1)
 	sleep(0.1)
 	GPIO.output(getPin,0)
+	
+sleep(0.01)
+GPIO.output(getPin,0)
 
 
 

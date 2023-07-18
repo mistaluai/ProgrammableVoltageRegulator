@@ -21,13 +21,6 @@ for i in range(0,6):
 	sleep(0.1)
 	GPIO.output(getPin,0)
 
-outputVoltageDecimal = 0;
-for i in range(0,10):
-		outputVoltageDecimal = outputVoltageDecimal + outputVoltage[i] * 2**(7-i)
-
-print(outputVoltageDecimal)
-
-
 
 
 

@@ -18,6 +18,10 @@ GPIO.output(getPin,0)
 twoPower =0;
 decimal = 0;
 
+while True:
+	decimal += GPIO.input(readerPin) * 2**twoPower
+	print("input: " + str(GPIO.input(readerPin)) + " decimal: " + str(decimal))
+
 
 
 	

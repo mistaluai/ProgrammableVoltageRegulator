@@ -15,18 +15,13 @@ GPIO.output(getPin,1)
 sleep(0.1)
 GPIO.output(getPin,0)
 outputVoltage = [0,0,0,0,0,0,0,0,0,0]
-twoPower = 0;
-decimal = 0;
-while GPIO.input(endListenerPin)!=1:
+
+for i in range(0,5):
 	print(GPIO.input(readerPin))
-	outputVoltage[twoPower] = GPIO.input(readerPin)
-	decimal += 2**twoPower * GPIO.input(readerPin)
-	twoPower += 1;
+	outputVoltage[i] = GPIO.input(readerPin)
 	GPIO.output(getPin,1)
 	sleep(0.1)
 	GPIO.output(getPin,0)
-
-print(decimal)
 
 
 

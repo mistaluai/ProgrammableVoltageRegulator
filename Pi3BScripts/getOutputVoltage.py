@@ -23,6 +23,13 @@ while GPIO.input(endListenerPin)!=1:
 	index += 1;
 	sleep(0.05)
 print(outputVoltage)
-	
+weight = 0;
+dec = 0;
+for i in outputVoltage:
+	dec += i * 2**weight
+	weight += 1;
+dec/=100;
+print(dec)
+
 
 

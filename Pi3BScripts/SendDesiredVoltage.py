@@ -21,6 +21,3 @@ pwm.start(duty_cycle);
 GPIO.output(notifier_pin,1)
 sleep(0.1)
 GPIO.output(notifier_pin,0)
-
-
-input()

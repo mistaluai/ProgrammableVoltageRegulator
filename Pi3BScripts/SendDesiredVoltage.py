@@ -3,11 +3,10 @@ from time import sleep
 import sys
 
 ## get values from command line
-pwmPin = int(sys.argv[1])
-f = int(sys.argv[2])
-duty_cycle = int(sys.argv[3])
-notifier_pin = int(sys.argv[4]) #zero for none
-stop = int(sys.argv[5])
+pwmPin = 33
+f = 1000
+duty_cycle = int(sys.argv[1])
+notifier_pin = 31
 
 #set gpio modes
 GPIO.setmode(GPIO.BOARD)
@@ -23,7 +22,5 @@ GPIO.output(notifier_pin,1)
 sleep(0.1)
 GPIO.output(notifier_pin,0)
 
-if stop == 1:
-	pwm.stop()
 
 input()

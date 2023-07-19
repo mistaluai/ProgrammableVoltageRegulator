@@ -19,7 +19,7 @@ outputVoltage = []
 index = 0;
 while GPIO.input(endListenerPin)!=1:
 	outputVoltage.append(GPIO.input(readerPin))
-	print(GPIO.input(readerPin))
+	#print(GPIO.input(readerPin))
 	index += 1;
 	sleep(0.05)
 print(outputVoltage)

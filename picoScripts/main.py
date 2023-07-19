@@ -17,7 +17,7 @@ def getDesiredVoltage(): #calculates desired voltage based on signal received fr
 getterPin = Pin(22, Pin.IN)
 outputVoltagePin = Pin(21, Pin.OUT)
 enderPin = Pin(20, Pin.OUT)
-outputVoltage = 750;
+outputVoltage = 1200;
 
 def sendOutputVoltage():
     print("output voltage stream start")
@@ -25,10 +25,10 @@ def sendOutputVoltage():
     #algorithm to make output voltage in binary
     outputVoltageDigital = list(map(int, bin(int(outputVoltage))[2:]))
     while index<len(outputVoltageDigital):
-        if getterPin.value() == 1:
             outputVoltagePin.value(outputVoltageDigital[index])
             print(outputVoltagePin.value())
-            index = index +1;       
+            index = index +1;
+            utime.sleep(0.05)       
     enderPin.value(1)
     print("output voltage stream end")
     utime.sleep(0.1)
@@ -41,7 +41,8 @@ while True:
         getDesiredVoltage()
     if getterPin.value() == 1:
         sendOutputVoltage()
-    print(enderPin.value())
-    utime.sleep(0.1)
+    #print(enderPin.value())
+    utime.sleep(0.05)
+
 
 

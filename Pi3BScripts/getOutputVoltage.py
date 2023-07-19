@@ -19,11 +19,7 @@ twoPower =0;
 decimal = 0;
 
 while True:
-	GPIO.output(getPin,1)
-	sleep(0.1)
-	GPIO.output(getPin,0)
-	if GPIO.input(endListenerPin) == 1:
-		break
+	print(GPIO.input(endListenerPin))
 
 
 

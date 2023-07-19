@@ -17,7 +17,8 @@ GPIO.output(getPin,0)
 outputVoltage = [0,0,0,0,0,0,0,0,0,0]
 
 for i in range(0,10):
-	print(GPIO.input(readerPin))
+	#print(GPIO.input(readerPin))
+	print(GPIO.input(endListenerPin))
 	outputVoltage[i] = GPIO.input(readerPin)
 	GPIO.output(getPin,1)
 	sleep(0.1)

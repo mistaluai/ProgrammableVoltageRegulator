@@ -24,7 +24,6 @@ while GPIO.input(endListenerPin)!=1:
 	GPIO.output(getPin,1)
 	sleep(0.1)
 	GPIO.output(getPin,0)
-print(decimal)
 
 	
 

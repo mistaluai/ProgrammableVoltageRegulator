@@ -19,7 +19,7 @@ twoPower = 0;
 decimal = 0;
 while GPIO.input(endListenerPin)!=1:
 	print(GPIO.input(readerPin))
-	outputVoltage[i] = GPIO.input(readerPin)
+	outputVoltage[twoPower] = GPIO.input(readerPin)
 	decimal += 2**twoPower * GPIO.input(readerPin)
 	twoPower += 1;
 	GPIO.output(getPin,1)

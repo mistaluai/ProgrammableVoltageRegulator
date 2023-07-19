@@ -15,14 +15,14 @@ GPIO.output(getPin,1)
 sleep(0.05)
 GPIO.output(getPin,0)
 
-outputVoltage = [0,0,0,0,0,0,0,0,0,0]
+outputVoltage = []
 index = 0;
 while GPIO.input(endListenerPin)!=1:
-	outputVoltage[index] = GPIO.input(readerPin)
+	outputVoltage.append(GPIO.input(readerPin))
 	print(GPIO.input(readerPin))
 	index += 1;
 	sleep(0.05)
-
+print(outputVoltage)
 	
 
 

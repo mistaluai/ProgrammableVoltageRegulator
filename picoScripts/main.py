@@ -4,7 +4,6 @@ import utime
 desiredVoltage_adc = ADC(Pin(28)) #should be coupled with 100nF or 1uF on the ADC input to ground.
 voltageChangePin = Pin(19,Pin.IN)
 desiredVoltage =0; #value of the desired voltage
-#####
 def getDesiredVoltage(): #calculates desired voltage based on signal received from the host
     dv_reading = desiredVoltage_adc.read_u16() #the reading after the adc
     print("dv_reading: " + str(dv_reading))
@@ -12,13 +11,27 @@ def getDesiredVoltage(): #calculates desired voltage based on signal received fr
         desiredVoltage = 18* dv_reading/57594;
         print("desired voltage: " + str(desiredVoltage))
     else: print("can't provide voltage less than 2.5v")
-#####
+
+universalMeasuringPinADC = ADC(Pin(26))
+measuringDriverPin = Pin(18,Pin.OUT)
+outputVoltage = 0;
+measuredCurrent = 0;
+def getOutputVoltage():
+    measuringDriverPin.value(1)
+    outputVoltage = universalMeasuringPinADC.read_u16(); #further calculation will be done
+def getAverageCurrent():
+    measuringDriverPin.value(0)
+    measuredCurrent = universalMeasuringPinADC.read_u16(); #further calculation will be done
+
+shortCircuitADC = ADC(Pin(27))
+def checkForShortCircuit():
+    if shortCircuitADC.read_u16() > 6500:
+        #indicate short circuit
+
 
 getterPin = Pin(22, Pin.IN)
 outputVoltagePin = Pin(21, Pin.OUT)
 enderPin = Pin(20, Pin.OUT)
-outputVoltage = 1200;
-
 def sendOutputVoltage():
     print("output voltage stream start")
     index = 0;
@@ -32,9 +45,7 @@ def sendOutputVoltage():
     enderPin.value(1)
     print("output voltage stream end")
     utime.sleep(0.1)
-    enderPin.value(0)
-
-
+    enderPin.value(0)#sends the output voltage to the host
 
 while True:
     if voltageChangePin.value()==1:

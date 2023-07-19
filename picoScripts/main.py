@@ -8,7 +8,7 @@ def getDesiredVoltage(): #calculates desired voltage based on signal received fr
     dv_reading = desiredVoltage_adc.read_u16() #the reading after the adc
     print("dv_reading: " + str(dv_reading))
     if dv_reading >= 8276:
-        desiredVoltage = 18* dv_reading/57594;
+        desiredVoltage = 18* dv_reading/57594;#further calculations needed
         print("desired voltage: " + str(desiredVoltage))
     else: print("can't provide voltage less than 2.5v")
 

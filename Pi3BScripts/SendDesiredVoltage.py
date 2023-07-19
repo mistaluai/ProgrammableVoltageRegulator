@@ -17,7 +17,7 @@ GPIO.setwarnings(False)
 #start pwm
 pwm = GPIO.PWM(pwmPin,f)
 pwm.start(duty_cycle);
-
+sleep(0.5)
 GPIO.output(notifier_pin,1)
-sleep(0.05)
+sleep(0.1)
 GPIO.output(notifier_pin,0)

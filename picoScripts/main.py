@@ -41,6 +41,7 @@ while True:
         getDesiredVoltage()
     if getterPin.value() == 1:
         sendOutputVoltage()
+    print(enderPin.value())
     utime.sleep(0.1)
 
 

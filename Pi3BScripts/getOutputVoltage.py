@@ -15,5 +15,17 @@ GPIO.output(getPin,1)
 sleep(0.1)
 GPIO.output(getPin,0)
 
+twoPower =0;
+decimal = 0;
+
+while GPIO.input(endListenerPin)!=1:
+	decimal += GPIO.input(readerPin) * 2**twoPower
+	print(GPIO.input(readerPin))
+	GPIO.output(getPin,1)
+	sleep(0.1)
+	GPIO.output(getPin,0)
+print(decimal)
+
+	
 
 

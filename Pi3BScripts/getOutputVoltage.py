@@ -18,10 +18,6 @@ GPIO.output(getPin,0)
 twoPower =0;
 decimal = 0;
 
-while True:
-	print(GPIO.input(endListenerPin))
-
-
 
 	
 

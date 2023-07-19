@@ -15,9 +15,14 @@ GPIO.output(getPin,1)
 sleep(0.1)
 GPIO.output(getPin,0)
 
-twoPower =0;
-decimal = 0;
+outputVoltage = [0,0,0,0,0,0,0,0,0,0]
 
+for i in range(0,10):
+	print(GPIO.input(readerPin))
+	outputVoltage[i] = GPIO.input(readerPin)
+	GPIO.output(getPin,1)
+	sleep(0.1)
+	GPIO.output(getPin,0)
 
 	
 

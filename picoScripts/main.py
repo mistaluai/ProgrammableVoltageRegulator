@@ -1,16 +1,23 @@
 from machine import ADC, Pin
 import utime
 
-desiredVoltage_adc = ADC(Pin(28)) #should be coupled with 100nF or 1uF on the ADC input to ground.
+universalInputVoltageADC = ADC(Pin(28)) #should be coupled with 100nF or 1uF on the ADC input to ground.
 voltageChangePin = Pin(19,Pin.IN)
+inputVoltageDriverPin = Pin(17,Pin.IN)
 desiredVoltage =0; #value of the desired voltage
+unregulatedVoltage =0;
 def getDesiredVoltage(): #calculates desired voltage based on signal received from the host
-    dv_reading = desiredVoltage_adc.read_u16() #the reading after the adc
+    inputVoltageDriverPin.value(1)
+    dv_reading = universalInputVoltageADC.read_u16() #the reading after the adc
     print("dv_reading: " + str(dv_reading))
     if dv_reading >= 8276:
         desiredVoltage = 18* dv_reading/57594;#further calculations needed
         print("desired voltage: " + str(desiredVoltage))
     else: print("can't provide voltage less than 2.5v")
+def getUnregulatedVoltage():
+    inputVoltageDriverPin.value(1)
+    unregulatedVoltage = universalInputVoltageADC.read_u16() #further calculations to be done
+
 
 universalMeasuringPinADC = ADC(Pin(26))
 measuringDriverPin = Pin(18,Pin.OUT)

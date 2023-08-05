@@ -19,5 +19,5 @@ chan = AnalogIn(mcp, MCP.P0, MCP.P1)
 while True:
 	print('Voltage Across the resistor: ' + str(chan.voltage) + 'V')
 	print('Current in the circuit: ' + str((chan.voltage*100)) + 'mA')
-	print('Circuit Resistance' + str(9/((chan.voltage*100))) + 'kΩ')
+	print('Circuit Resistance' + str(6.6/((chan.voltage*100))) + 'kΩ')
 	sleep(0.05)

@@ -17,6 +17,7 @@ mcp = MCP.MCP3008(spi, cs)
 chan = AnalogIn(mcp, MCP.P0, MCP.P1)
 
 while True:
-	print('Raw ADC Value: ', chan.value)
-	print('ADC Voltage: ' + str(chan.voltage) + 'V')
+	print('Voltage Across the resistor: ' + str(chan.voltage) + 'V')
+	print('Current in the circuit: ' + str((chan.voltage*100)) + 'mA')
+	print('Circuit Resistance' + str(9/((chan.voltage*100))) + 'kΩ')
 	sleep(0.05)

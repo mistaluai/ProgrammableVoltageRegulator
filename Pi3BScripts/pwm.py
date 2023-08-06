@@ -7,9 +7,8 @@ pwmPin = int(sys.argv[1])
 f = int(sys.argv[2])
 duty_cycle = float(sys.argv[3])
 
-#set gpio modes
-if GPIO.getmode()==-1:
-	GPIO.setmode(GPIO.BCM)
+
+GPIO.setmode(GPIO.BCM)
 
 GPIO.setwarnings(False)
 GPIO.setup(pwmPin,GPIO.OUT)

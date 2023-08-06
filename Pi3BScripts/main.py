@@ -85,6 +85,7 @@ class Embedded:
 
 if __name__ == "__main__":
 	embeddedObject = Embedded()
+	self.CH_pwmOUT.start(0)
 	f = int(input("enter f"))
 	dc = int(input("enter dc"))
 	while True:

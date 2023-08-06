@@ -57,6 +57,7 @@ class Embedded:
 		else: resistance = 0
 
 	def debugAnalogInput():
+		print("about to call something")
 		getInputVoltage()
 		getOutputVoltage()
 		getCurrent()

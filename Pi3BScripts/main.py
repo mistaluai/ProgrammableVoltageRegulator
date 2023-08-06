@@ -30,9 +30,9 @@ class Embedded:
 	mcp = MCP.MCP3008(spi, cs)
 
 	#channels definition
-	CH_inputVoltage = AnalogIn(mcp, MCP.P0, MCP.P1)
-	CH_outputVoltage = AnalogIn(mcp, MCP.P0, MCP.P2)
-	CH_shuntVoltage = AnalogIn(mcp, MCP.P0, MCP.P3)
+	CH_inputVoltage = AnalogIn(mcp, MCP.P1, MCP.P0)
+	CH_outputVoltage = AnalogIn(mcp, MCP.P3, MCP.P2)
+	CH_shuntVoltage = AnalogIn(mcp, MCP.P4, MCP.P5)
 	#constants
 	shunt_resistance = 10
 	inputVoltage_factor = 109/20

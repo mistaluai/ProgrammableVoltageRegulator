@@ -82,12 +82,12 @@ class Embedded:
 		if Attributes!=self.pwmAttributes:
 			self.disablePWM()
 			self.enablePWM(duty_cycle,frequency)
+			print(Attributes + "|" + pwmAttributes + " changes done")
 
 	
 	def disablePWM(self):
 	    try:
 	        subprocess.call(["pkill", "-f", "pwm.py"])
-	        print("pwm disabled")
 	    except:
 	        pass
 

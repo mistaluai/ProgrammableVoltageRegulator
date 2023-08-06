@@ -82,7 +82,7 @@ class Embedded:
 		if Attributes!=self.pwmAttributes:
 			self.disablePWM()
 			self.enablePWM(duty_cycle,frequency)
-			print(Attributes + " | " + self.pwmAttributes + " changes done")
+			print(Attributes + " | " + str(self.pwmAttributes) + " changes done")
 
 	
 	def disablePWM(self):

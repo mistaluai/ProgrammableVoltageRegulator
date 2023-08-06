@@ -49,23 +49,23 @@ class Embedded:
 
 
 	
-	def getInputVoltage():
+	def getInputVoltage(self):
 		inputVoltage = inputVoltage_factor * CH_inputVoltage.voltage()
 
 
-	def getOutputVoltage():
+	def getOutputVoltage(self):
 		outputVoltage = outputVoltage_factor * CH_outputVoltage.voltage() - CH_shuntVoltage.voltage();
 
-	def getCurrent():
+	def getCurrent(self):
 		shuntVoltage = CH_shuntVoltage.voltage()
 		current = shuntVoltage*100;
 
-	def getResistance():
+	def getResistance(self):
 		if current != 0:
 			resistance = outputVoltage/current
 		else: resistance = 0
 
-	def debugAnalogInput():
+	def debugAnalogInput(self):
 		print("about to call something")
 		getInputVoltage()
 		getOutputVoltage()

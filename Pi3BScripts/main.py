@@ -40,12 +40,9 @@ class Embedded:
 		mcp = MCP.MCP3008(spi, cs)
 		print("MCP Object created")
 		#channels definition
-		global CH_inputVoltage
-		global CH_outputVoltage
-		global CH_shuntVoltage
-		CH_inputVoltage = AnalogIn(mcp, MCP.P1, MCP.P0)
-		CH_outputVoltage = AnalogIn(mcp, MCP.P3, MCP.P2)
-		CH_shuntVoltage = AnalogIn(mcp, MCP.P4, MCP.P5)
+		self.CH_inputVoltage = AnalogIn(mcp, MCP.P1, MCP.P0)
+		self.CH_outputVoltage = AnalogIn(mcp, MCP.P3, MCP.P2)
+		self.CH_shuntVoltage = AnalogIn(mcp, MCP.P4, MCP.P5)
 		print("Diffrential Channels Defined")
 		#pwm initialization
 		GPIO.setup(23,GPIO.OUT)

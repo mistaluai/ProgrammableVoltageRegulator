@@ -29,6 +29,8 @@ class Embedded:
 	CH_inputVoltage = None
 	CH_outputVoltage = None
 	CH_shuntVoltage = None
+	CH_pwmOUT = None
+	CH_pwmIN = None
 	def __init__(self):
 		#Analog To Digital
 		#create the spi bus
@@ -43,6 +45,8 @@ class Embedded:
 		self.CH_inputVoltage = AnalogIn(mcp, MCP.P1, MCP.P0)
 		self.CH_outputVoltage = AnalogIn(mcp, MCP.P3, MCP.P2)
 		self.CH_shuntVoltage = AnalogIn(mcp, MCP.P4, MCP.P5)
+		self.CH_pwmOUT = GPIO.PWM(23,20)
+		self.CH_pwmOUT.start(0)
 		print("Diffrential Channels Defined")
 		#pwm initialization
 		GPIO.setup(23,GPIO.OUT)
@@ -76,8 +80,8 @@ class Embedded:
 		print("Input Voltage (V): " + str(inputVoltage) + "\nOutput Voltage (V): " + str(outputVoltage) + "\nShunt Voltage (V): " + str(shuntVoltage) + "\nTotal Current (mA): " + str(current) + "\nTotal Resistance (Ω): " + str(resistance))
 	
 	def pwmSignal(self, duty_cycle, frequency):
-		pwm = GPIO.PWM(23,frequency)
-		pwm.start(duty_cycle)
+		self.CH_pwmOUT.ChangeFrequency(frequency)
+		self.CH_pwmOUT.ChangeDutyCycle(duty_cycle)
 
 if __name__ == "__main__":
 	embeddedObject = Embedded()

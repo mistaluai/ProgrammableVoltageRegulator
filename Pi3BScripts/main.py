@@ -46,12 +46,7 @@ class Embedded:
 		self.CH_outputVoltage = AnalogIn(mcp, MCP.P3, MCP.P2)
 		self.CH_shuntVoltage = AnalogIn(mcp, MCP.P4, MCP.P5)
 		print("Diffrential Channels Defined")
-		#pwm initialization
-		GPIO.setup(23,GPIO.OUT)
-		GPIO.setwarnings(False)
-		self.CH_pwmOUT = GPIO.PWM(23,20)
-		self.CH_pwmOUT.start(0)
-		print("PWM Pins initialised")
+
 
 
 	
@@ -80,6 +75,11 @@ class Embedded:
 		print("Input Voltage (V): " + str(inputVoltage) + "\nOutput Voltage (V): " + str(outputVoltage) + "\nShunt Voltage (V): " + str(shuntVoltage) + "\nTotal Current (mA): " + str(current) + "\nTotal Resistance (Ω): " + str(resistance))
 	
 	def pwmSignal(self, duty_cycle, frequency):
+		#pwm initialization
+		GPIO.setup(23,GPIO.OUT)
+		GPIO.setwarnings(False)
+		self.CH_pwmOUT = GPIO.PWM(23,1)
+		self.CH_pwmOUT.start(0)
 		self.CH_pwmOUT.ChangeFrequency(frequency)
 		self.CH_pwmOUT.ChangeDutyCycle(duty_cycle)
 

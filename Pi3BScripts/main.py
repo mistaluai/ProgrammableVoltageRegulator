@@ -100,7 +100,7 @@ if __name__ == "__main__":
 	f = int(input("enter f"))
 	dc = int(input("enter dc"))
 	while True:
-		#embeddedObject.pwmSignal(dc,f)
+		embeddedObject.pwmSignal(dc,f)
 		print(embeddedObject.pwmAttributes)
 		embeddedObject.debugAnalogInput()
 		sleep(0.1)

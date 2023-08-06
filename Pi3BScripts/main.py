@@ -94,7 +94,7 @@ class Embedded:
 
 	def enablePWM(self,duty_cycle,frequency):
 		pwmScript = subprocess.run(["python"," /home/proj/Documents/embproj/Pi3BScripts/pwm.py","23",str(frequency),str(duty_cycle)],capture_output=True, text=True)
-		self.pwmAttributes = pwmScript.stdout
+		self.pwmAttributes = pwmScript.stdout.decode('utf-8')
 		print("pwm enabled")
 
 if __name__ == "__main__":

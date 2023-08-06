@@ -8,25 +8,28 @@ import RPi.GPIO as GPIO
 import sys
 
 
-#global variables
-desiredVoltage = 0
-#analog variables
-inputVoltage=0
-outputVoltage=0
-shuntVoltage = 0
-current = 0
-resistance =0
-#constants
-shunt_resistance = 10
-inputVoltage_factor = 109/20
-outputVoltage_factor = 27/7
-#pid variables
-Kp=0
-Ki=0
-Kd=0
-
 
 class Embedded:
+	#global variables
+	desiredVoltage = 0
+	#analog variables
+	inputVoltage=0
+	outputVoltage=0
+	shuntVoltage = 0
+	current = 0
+	resistance =0
+	#pid variables
+	Kp=0
+	Ki=0
+	Kd=0
+	#constants
+	shunt_resistance = 10
+	inputVoltage_factor = 109/20
+	outputVoltage_factor = 27/7
+	#analog channels
+	CH_inputVoltage = None
+	CH_outputVoltage = None
+	CH_shuntVoltage = None
 	def __init__(self):
 		#Analog To Digital
 		#create the spi bus

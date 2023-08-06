@@ -76,7 +76,7 @@ class Embedded:
 		print("Input Voltage (V): " + str(inputVoltage) + "\nOutput Voltage (V): " + str(outputVoltage) + "\nShunt Voltage (V): " + str(shuntVoltage) + "\nTotal Current (mA): " + str(current) + "\nTotal Resistance (Ω): " + str(resistance))
 
 
-pwmAttributes = None;		
+	pwmAttributes = None;		
 	def pwmSignal(self, duty_cycle, frequency):
 		Attributes = str(frequency) + " " + str(float(duty_cycle))
 		if Attributes!=pwmAttributes:

@@ -11,8 +11,8 @@ duty_cycle = float(sys.argv[3])
 if GPIO.getmode()==-1:
 	GPIO.setmode(GPIO.BCM)
 
-GPIO.setup(pwmPin,GPIO.OUT)
 GPIO.setwarnings(False)
+GPIO.setup(pwmPin,GPIO.OUT)
 
 #start pwm
 pwm = GPIO.PWM(pwmPin,f)

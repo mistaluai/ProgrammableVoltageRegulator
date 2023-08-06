@@ -81,7 +81,7 @@ class Embedded:
 	currentCycle =0
 	currentFrequency=0;		
 	def pwmSignal(self, duty_cycle, frequency):
-		if self.currentFrequency!=frequency || self.currentCycle!=duty_cycle:
+		if self.currentFrequency!=frequency or self.currentCycle!=duty_cycle:
 			self.disablePWM()
 			self.enablePWM(duty_cycle,frequency)
 			print("changes done")

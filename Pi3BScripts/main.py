@@ -52,14 +52,14 @@ class Embedded:
 
 	
 	def getInputVoltage(self):
-		inputVoltage = inputVoltage_factor * self.CH_inputVoltage.voltage()
+		inputVoltage = inputVoltage_factor * self.CH_inputVoltage.voltage
 
 
 	def getOutputVoltage(self):
-		outputVoltage = outputVoltage_factor * self.CH_outputVoltage.voltage() - self.CH_shuntVoltage.voltage();
+		outputVoltage = outputVoltage_factor * self.CH_outputVoltage.voltage - self.CH_shuntVoltage.voltage;
 
 	def getCurrent(self):
-		shuntVoltage = self.CH_shuntVoltage.voltage()
+		shuntVoltage = self.CH_shuntVoltage.voltage
 		current = shuntVoltage*100;
 
 	def getResistance(self):

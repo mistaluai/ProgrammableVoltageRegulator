@@ -16,6 +16,10 @@ outputVoltage=0
 shuntVoltage = 0
 current = 0
 resistance =0
+#constants
+shunt_resistance = 10
+inputVoltage_factor = 109/20
+outputVoltage_factor = 27/7
 #pid variables
 Kp=0
 Ki=0
@@ -23,23 +27,24 @@ Kd=0
 
 
 class Embedded:
-	#Analog To Digital
-	#create the spi bus
-	spi = busio.SPI(clock=board.SCK, MISO=board.MISO, MOSI=board.MOSI)
-	# create the cs (chip select)
-	cs = digitalio.DigitalInOut(board.D5)
-	# create the mcp object
-	mcp = MCP.MCP3008(spi, cs)
+	def __init__(self):
+		#Analog To Digital
+		#create the spi bus
+		spi = busio.SPI(clock=board.SCK, MISO=board.MISO, MOSI=board.MOSI)
+		# create the cs (chip select)
+		cs = digitalio.DigitalInOut(board.D5)
+		# create the mcp object
+		mcp = MCP.MCP3008(spi, cs)
+		#channels definition
+		CH_inputVoltage = AnalogIn(mcp, MCP.P1, MCP.P0)
+		CH_outputVoltage = AnalogIn(mcp, MCP.P3, MCP.P2)
+		CH_shuntVoltage = AnalogIn(mcp, MCP.P4, MCP.P5)
+		#pwm initialization
+		GPIO.setup(23,GPIO.OUT)
+		GPIO.setwarnings(False)
 
-	#channels definition
-	CH_inputVoltage = AnalogIn(mcp, MCP.P1, MCP.P0)
-	CH_outputVoltage = AnalogIn(mcp, MCP.P3, MCP.P2)
-	CH_shuntVoltage = AnalogIn(mcp, MCP.P4, MCP.P5)
-	#constants
-	shunt_resistance = 10
-	inputVoltage_factor = 109/20
-	outputVoltage_factor = 27/7
 
+	
 	def getInputVoltage():
 		inputVoltage = inputVoltage_factor * CH_inputVoltage.voltage()
 
@@ -63,21 +68,18 @@ class Embedded:
 		getCurrent()
 		getResistance()
 		print("Input Voltage (V): " + str(inputVoltage) + "\nOutput Voltage (V): " + str(outputVoltage) + "\nShunt Voltage (V): " + str(shuntVoltage) + "\nTotal Current (mA): " + str(current) + "\nTotal Resistance (Ω): " + str(resistance))
-
-	#pwm
-	print("gpio setting")
-	GPIO.setup(23,GPIO.OUT)
-	GPIO.setwarnings(False)
-
+	
 	def pwmSignal(duty_cycle, frequency):
 		pwm = GPIO.PWM(16,frequency)
 		pwm.start(duty_cycle)
 
+if __name__ == "__main__":
+	embeddedObject = Embedded()
 	f = int(input("enter f"))
 	dc = int(input("enter dc"))
-	pwmSignal(dc,f)
+	embeddedObject.pwmSignal(dc,f)
 	while True:
-		debugAnalogInput()
+		embeddedObject.debugAnalogInput()
 		sleep(0.1)
 
 

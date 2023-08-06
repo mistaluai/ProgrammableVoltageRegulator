@@ -6,6 +6,8 @@ import board
 from time import sleep
 import RPi.GPIO as GPIO
 import sys
+import subprocess
+
 
 #global variables
 desiredVoltage = 0
@@ -46,11 +48,6 @@ class Embedded:
 		self.CH_outputVoltage = AnalogIn(mcp, MCP.P3, MCP.P2)
 		self.CH_shuntVoltage = AnalogIn(mcp, MCP.P4, MCP.P5)
 		print("Diffrential Channels Defined")
-		GPIO.setup(23,GPIO.OUT)
-		GPIO.setwarnings(False)
-		self.CH_pwmOUT = GPIO.PWM(23,1)
-		self.CH_pwmOUT.start(0)
-
 
 
 	
@@ -77,10 +74,26 @@ class Embedded:
 		self.getCurrent()
 		self.getResistance()
 		print("Input Voltage (V): " + str(inputVoltage) + "\nOutput Voltage (V): " + str(outputVoltage) + "\nShunt Voltage (V): " + str(shuntVoltage) + "\nTotal Current (mA): " + str(current) + "\nTotal Resistance (Ω): " + str(resistance))
-	
+
+
+pwmAttributes = None;		
 	def pwmSignal(self, duty_cycle, frequency):
-		self.CH_pwmOUT.ChangeFrequency(frequency)
-		self.CH_pwmOUT.ChangeDutyCycle(duty_cycle)
+		Attributes = str(frequency) + " " + str(duty_cycle)
+		if Attributes!=pwmAttributes:
+			self.disablePWM()
+			self.enablePWM(duty_cycle,frequency)
+
+	
+	def disablePWM(self):
+	    try:
+	        subprocess.call(["pkill", "-f", "pwm.py"])
+	    except:
+	        pass
+
+
+	def enablePWM(self,duty_cycle,frequency):
+		pwmScript = subprocess.run(["python"," /home/proj/Documents/embproj/Pi3BScripts/pwm.py","23",str(frequency),str(duty_cycle)],capture_output=True)
+		self.pwmAttributes = pwmScript.stdout
 
 if __name__ == "__main__":
 	embeddedObject = Embedded()

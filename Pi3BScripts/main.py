@@ -4,6 +4,8 @@ import busio
 import digitalio
 import board
 from time import sleep
+import RPi.GPIO as GPIO
+import sys
 
 
 #global variables

@@ -31,17 +31,21 @@ class Embedded:
 		#Analog To Digital
 		#create the spi bus
 		spi = busio.SPI(clock=board.SCK, MISO=board.MISO, MOSI=board.MOSI)
+		print("SPI Bus created")
 		# create the cs (chip select)
 		cs = digitalio.DigitalInOut(board.D5)
 		# create the mcp object
 		mcp = MCP.MCP3008(spi, cs)
+		print("MCP Object created")
 		#channels definition
 		CH_inputVoltage = AnalogIn(mcp, MCP.P1, MCP.P0)
 		CH_outputVoltage = AnalogIn(mcp, MCP.P3, MCP.P2)
 		CH_shuntVoltage = AnalogIn(mcp, MCP.P4, MCP.P5)
+		print("Diffrential Channels Defined")
 		#pwm initialization
 		GPIO.setup(23,GPIO.OUT)
 		GPIO.setwarnings(False)
+		print("PWM Pins initialised")
 
 
 	

@@ -48,6 +48,8 @@ class Embedded:
 		self.CH_outputVoltage = AnalogIn(mcp, MCP.P3, MCP.P2)
 		self.CH_shuntVoltage = AnalogIn(mcp, MCP.P4, MCP.P5)
 		print("Diffrential Channels Defined")
+		#board
+		GPIO.setmode(GPIO.BCM)
 
 
 	

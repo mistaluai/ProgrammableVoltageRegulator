@@ -102,10 +102,11 @@ class Embedded:
 
 if __name__ == "__main__":
 	embeddedObject = Embedded()
-	f = int(input("enter f "))
-	dc = int(input("enter dc "))
+	#f = int(input("enter f "))
+	#dc = int(input("enter dc "))
 	while True:
-		embeddedObject.pwmSignal(dc,f)
+		for i in range(1,8):
+			embeddedObject.pwmSignal(i,i)
 		#embeddedObject.debugAnalogInput()
 		sleep(0.1)
 

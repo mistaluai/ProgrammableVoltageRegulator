@@ -67,10 +67,10 @@ class Embedded:
 
 	def debugAnalogInput(self):
 		print("about to call something")
-		getInputVoltage()
-		getOutputVoltage()
-		getCurrent()
-		getResistance()
+		self.getInputVoltage()
+		self.getOutputVoltage()
+		self.getCurrent()
+		self.getResistance()
 		print("Input Voltage (V): " + str(inputVoltage) + "\nOutput Voltage (V): " + str(outputVoltage) + "\nShunt Voltage (V): " + str(shuntVoltage) + "\nTotal Current (mA): " + str(current) + "\nTotal Resistance (Ω): " + str(resistance))
 	
 	def pwmSignal(self, duty_cycle, frequency):

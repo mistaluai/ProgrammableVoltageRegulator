@@ -73,7 +73,7 @@ class Embedded:
 		getResistance()
 		print("Input Voltage (V): " + str(inputVoltage) + "\nOutput Voltage (V): " + str(outputVoltage) + "\nShunt Voltage (V): " + str(shuntVoltage) + "\nTotal Current (mA): " + str(current) + "\nTotal Resistance (Ω): " + str(resistance))
 	
-	def pwmSignal(duty_cycle, frequency):
+	def pwmSignal(duty_cycle, frequency, third):
 		pwm = GPIO.PWM(23,frequency)
 		pwm.start(duty_cycle)
 
@@ -81,7 +81,7 @@ if __name__ == "__main__":
 	embeddedObject = Embedded()
 	f = int(input("enter f"))
 	dc = int(input("enter dc"))
-	embeddedObject.pwmSignal(5,20)
+	embeddedObject.pwmSignal(dc,f)
 	while True:
 		embeddedObject.debugAnalogInput()
 		sleep(0.1)

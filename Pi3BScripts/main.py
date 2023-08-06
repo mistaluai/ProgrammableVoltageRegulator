@@ -45,12 +45,12 @@ class Embedded:
 		self.CH_inputVoltage = AnalogIn(mcp, MCP.P1, MCP.P0)
 		self.CH_outputVoltage = AnalogIn(mcp, MCP.P3, MCP.P2)
 		self.CH_shuntVoltage = AnalogIn(mcp, MCP.P4, MCP.P5)
-		self.CH_pwmOUT = GPIO.PWM(23,20)
-		self.CH_pwmOUT.start(0)
 		print("Diffrential Channels Defined")
 		#pwm initialization
 		GPIO.setup(23,GPIO.OUT)
 		GPIO.setwarnings(False)
+		self.CH_pwmOUT = GPIO.PWM(23,20)
+		self.CH_pwmOUT.start(0)
 		print("PWM Pins initialised")
 
 

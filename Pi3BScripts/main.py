@@ -35,8 +35,8 @@ class Embedded:
 	CH_shuntVoltage = AnalogIn(mcp, MCP.P0, MCP.P3)
 	#constants
 	shunt_resistance = 10
-	inputVoltage_factor = 10
-	outputVoltage_factor = 7
+	inputVoltage_factor = 109/20
+	outputVoltage_factor = 27/7
 
 	def getInputVoltage():
 		inputVoltage = inputVoltage_factor * CH_inputVoltage.voltage()

@@ -78,7 +78,7 @@ class Embedded:
 
 pwmAttributes = None;		
 	def pwmSignal(self, duty_cycle, frequency):
-		Attributes = str(frequency) + " " + str(duty_cycle)
+		Attributes = str(frequency) + " " + str(float(duty_cycle))
 		if Attributes!=pwmAttributes:
 			self.disablePWM()
 			self.enablePWM(duty_cycle,frequency)
@@ -100,7 +100,8 @@ if __name__ == "__main__":
 	f = int(input("enter f"))
 	dc = int(input("enter dc"))
 	while True:
-		embeddedObject.pwmSignal(dc,f)
+		#embeddedObject.pwmSignal(dc,f)
+		print(embeddedObject.pwmAttributes)
 		embeddedObject.debugAnalogInput()
 		sleep(0.1)
 

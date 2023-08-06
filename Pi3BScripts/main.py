@@ -78,13 +78,13 @@ class Embedded:
 		print("Input Voltage (V): " + str(inputVoltage) + "\nOutput Voltage (V): " + str(outputVoltage) + "\nShunt Voltage (V): " + str(shuntVoltage) + "\nTotal Current (mA): " + str(current) + "\nTotal Resistance (Ω): " + str(resistance))
 
 
-	pwmAttributes = None;		
+	currentCycle =0
+	currentFrequency=0;		
 	def pwmSignal(self, duty_cycle, frequency):
-		Attributes = str(frequency) + " " + str(float(duty_cycle))
-		if Attributes!=self.pwmAttributes:
+		if self.currentFrequency!=frequency || self.currentCycle!=duty_cycle:
 			self.disablePWM()
 			self.enablePWM(duty_cycle,frequency)
-			print(Attributes + " | " + str(self.pwmAttributes) + " changes done")
+			print("changes done")
 
 	
 	def disablePWM(self):
@@ -95,8 +95,9 @@ class Embedded:
 
 
 	def enablePWM(self,duty_cycle,frequency):
-		pwmScript = subprocess.Popen(["python","/home/proj/Documents/embproj/Pi3BScripts/pwm.py","23",str(frequency),str(duty_cycle)],stdout=subprocess.PIPE)
-		self.pwmAttributes = pwmScript.stdout.read().decode("utf-8")
+		pwmScript = subprocess.Popen(["python","/home/proj/Documents/embproj/Pi3BScripts/pwm.py","23",str(frequency),str(duty_cycle)])
+		self.currentCycle=duty_cycle
+		self.currentFrequency=frequency
 		print("pwm enabled")
 
 if __name__ == "__main__":

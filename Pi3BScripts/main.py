@@ -87,6 +87,7 @@ class Embedded:
 	def disablePWM(self):
 	    try:
 	        subprocess.call(["pkill", "-f", "pwm.py"])
+	        print("pwm disabled")
 	    except:
 	        pass
 
@@ -94,6 +95,7 @@ class Embedded:
 	def enablePWM(self,duty_cycle,frequency):
 		pwmScript = subprocess.run(["python"," /home/proj/Documents/embproj/Pi3BScripts/pwm.py","23",str(frequency),str(duty_cycle)],capture_output=True)
 		self.pwmAttributes = pwmScript.stdout
+		print("pwm enabled")
 
 if __name__ == "__main__":
 	embeddedObject = Embedded()
@@ -101,7 +103,6 @@ if __name__ == "__main__":
 	dc = int(input("enter dc"))
 	while True:
 		embeddedObject.pwmSignal(dc,f)
-		print(embeddedObject.pwmAttributes)
 		embeddedObject.debugAnalogInput()
 		sleep(0.1)
 

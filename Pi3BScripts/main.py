@@ -65,6 +65,7 @@ class Embedded:
 		print("Input Voltage (V): " + str(inputVoltage) + "\nOutput Voltage (V): " + str(outputVoltage) + "\nShunt Voltage (V): " + str(shuntVoltage) + "\nTotal Current (mA): " + str(current) + "\nTotal Resistance (Ω): " + str(resistance))
 
 	#pwm
+	print("gpio setting")
 	GPIO.setup(23,GPIO.OUT)
 	GPIO.setwarnings(False)
 

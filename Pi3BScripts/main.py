@@ -74,7 +74,7 @@ class Embedded:
 		print("Input Voltage (V): " + str(inputVoltage) + "\nOutput Voltage (V): " + str(outputVoltage) + "\nShunt Voltage (V): " + str(shuntVoltage) + "\nTotal Current (mA): " + str(current) + "\nTotal Resistance (Ω): " + str(resistance))
 	
 	def pwmSignal(duty_cycle, frequency):
-		pwm = GPIO.PWM(16,frequency)
+		pwm = GPIO.PWM(23,frequency)
 		pwm.start(duty_cycle)
 
 if __name__ == "__main__":

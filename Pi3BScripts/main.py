@@ -49,12 +49,12 @@ class Embedded:
 		shuntVoltage = CH_shuntVoltage.voltage()
 		current = shuntVoltage*100;
 
-	def getResistance:
+	def getResistance():
 		if current != 0:
 			resistance = outputVoltage/current
 		else: resistance = 0
 
-	def debugAnalogInput:
+	def debugAnalogInput():
 		getInputVoltage()
 		getOutputVoltage()
 		getCurrent()

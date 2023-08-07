@@ -106,12 +106,13 @@ if __name__ == "__main__":
     embeddedObject = Embedded()
     f = int(input("enter f "))
     dc = int(input("enter dc "))
-    # embeddedObject.debugAnalogInput()
+   
     values = []
     for i in range(100):
         embeddedObject.pwmSignal(dc, f)
         value = embeddedObject.CH_pwmIN.voltage
         values.append(value)
+        embeddedObject.debugAnalogInput()
         sleep(0.01)
     plt.plot(values)
     plt.show()

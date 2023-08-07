@@ -11,7 +11,7 @@ class UI:
         
         self.window = self.builder.get_object("window")
         self.window_label = self.builder.get_object("Controller")
-        updateOutputVoltage(20)
+        self.updateOutputVoltage(20)
         self.window.show_all()
         
     def button_clicked(self,Apply):

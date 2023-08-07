@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.40.0 -->
+<!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.24"/>
   <object class="GtkAdjustment" id="adjustment1">
@@ -43,7 +43,6 @@
         </child>
         <child>
           <object class="GtkSpinButton" id="Entry">
-            <property name="name">my_style</property>
             <property name="width-request">162</property>
             <property name="height-request">63</property>
             <property name="visible">True</property>
@@ -51,32 +50,25 @@
             <property name="input-purpose">number</property>
             <property name="adjustment">adjustment1</property>
             <property name="digits">2</property>
-            <style>
-              <class name="&lt;style name=&quot;my_style&quot;&gt;&#10;  parent-style: default;&#10;  font: Helvetica;&#10;  font-weight: bold;&#10;  color: #093170;&#10;  font-size: 16pt;&#10;&lt;/style&gt;"/>
-            </style>
           </object>
           <packing>
-            <property name="x">157</property>
-            <property name="y">65</property>
+            <property name="x">193</property>
+            <property name="y">64</property>
           </packing>
         </child>
         <child>
           <object class="GtkButton" id="Apply">
             <property name="label" translatable="yes">Apply</property>
-            <property name="name">button</property>
             <property name="width-request">123</property>
             <property name="height-request">61</property>
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">True</property>
             <signal name="clicked" handler="button_clicked" swapped="no"/>
-            <style>
-              <class name="&lt;style name=&quot;button&quot;&gt;&#10;  parent-style: default;&#10;  font: Helvetica;&#10;  font-weight: bold;&#10;  color: #093170;&#10;  font-size: 16pt;&#10;&lt;/style&gt;"/>
-            </style>
           </object>
           <packing>
-            <property name="x">337</property>
-            <property name="y">72</property>
+            <property name="x">370</property>
+            <property name="y">64</property>
           </packing>
         </child>
         <child>
@@ -86,11 +78,12 @@
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <property name="label" translatable="yes">Output Voltage</property>
-            <property name="use-markup">True</property>
             <property name="wrap">True</property>
+            <property name="width-chars">22</property>
+            <property name="max-width-chars">18</property>
             <property name="xalign">0.10000000149011612</property>
             <attributes>
-              <attribute name="font-desc" value="Helvetica Neue Bold 16"/>
+              <attribute name="font-desc" value="Noto Serif Hebrew Heavy Semi-Condensed 16"/>
               <attribute name="weight" value="bold"/>
               <attribute name="foreground" value="#090931317070"/>
             </attributes>
@@ -141,29 +134,29 @@
         <child>
           <object class="GtkButton" id="graph1">
             <property name="label" translatable="yes">Graph</property>
-            <property name="width-request">77</property>
-            <property name="height-request">32</property>
+            <property name="width-request">89</property>
+            <property name="height-request">46</property>
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">True</property>
           </object>
           <packing>
-            <property name="x">611</property>
-            <property name="y">204</property>
+            <property name="x">430</property>
+            <property name="y">176</property>
           </packing>
         </child>
         <child>
           <object class="GtkButton" id="graph2">
             <property name="label" translatable="yes">Graph</property>
-            <property name="width-request">77</property>
-            <property name="height-request">32</property>
+            <property name="width-request">92</property>
+            <property name="height-request">41</property>
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">True</property>
           </object>
           <packing>
-            <property name="x">611</property>
-            <property name="y">283</property>
+            <property name="x">431</property>
+            <property name="y">234</property>
           </packing>
         </child>
         <child>
@@ -173,6 +166,7 @@
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <property name="label" translatable="yes">5.5v</property>
+            <property name="width-chars">28</property>
             <property name="xalign">1</property>
             <attributes>
               <attribute name="font-desc" value="Helvetica Neue Bold 16"/>
@@ -192,6 +186,7 @@
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <property name="label" translatable="yes">35mA</property>
+            <property name="width-chars">29</property>
             <property name="xalign">1</property>
             <attributes>
               <attribute name="font-desc" value="Helvetica Neue Bold 16"/>
@@ -211,6 +206,8 @@
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <property name="label" translatable="yes">300mWatt</property>
+            <property name="width-chars">35</property>
+            <property name="max-width-chars">14</property>
             <property name="xalign">1</property>
             <attributes>
               <attribute name="font-desc" value="Helvetica Neue Bold 16"/>
@@ -225,26 +222,25 @@
         </child>
         <child>
           <object class="GtkSeparator">
-            <property name="width-request">276</property>
-            <property name="height-request">150</property>
+            <property name="width-request">404</property>
+            <property name="height-request">165</property>
             <property name="visible">True</property>
             <property name="can-focus">False</property>
           </object>
           <packing>
-            <property name="y">189</property>
+            <property name="y">170</property>
           </packing>
         </child>
         <child>
           <object class="GtkSeparator">
-            <property name="width-request">237</property>
+            <property name="width-request">234</property>
             <property name="height-request">2</property>
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <property name="opacity">0.5000000002235174</property>
           </object>
           <packing>
-            <property name="x">16</property>
-            <property name="y">237</property>
+            <property name="y">234</property>
           </packing>
         </child>
         <child>
@@ -256,8 +252,7 @@
             <property name="opacity">0.50196078431372548</property>
           </object>
           <packing>
-            <property name="x">17</property>
-            <property name="y">291</property>
+            <property name="y">286</property>
           </packing>
         </child>
       </object>

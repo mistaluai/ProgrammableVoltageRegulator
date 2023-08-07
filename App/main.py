@@ -196,6 +196,7 @@ class Embedded:
 
 
 if __name__ == "__main__":
+	uiapp = UI()
     embeddedObject = Embedded()
     f = int(input("enter f "))
     dc = int(input("enter dc "))

@@ -24,7 +24,7 @@ Kd = 0
 # constants
 shunt_resistance = 10
 inputVoltage_factor = 109 / 20
-outputVoltage_factor = 27 / 7
+outputVoltage_factor = 52/7
 
 
 class Embedded:

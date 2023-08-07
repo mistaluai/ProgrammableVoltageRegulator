@@ -193,7 +193,7 @@ class Embedded:
         print("pwm enabled")
 
 
-    def embeddedMain():
+    def embeddedMain(self):
 	    f = int(input("enter f "))
 	    dc = int(input("enter dc "))
 	    values = []

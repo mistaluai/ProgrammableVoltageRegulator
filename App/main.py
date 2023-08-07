@@ -65,10 +65,12 @@ class UI:
     def updatePowerConsumption(self, powerconsumption):
         self.PowerConsumption = self.builder.get_object("power_consumption")
         self.PowerConsumption.set_text(str(powerconsumption) + "mWatt")
-    def get_voltageDesired_button_value(v_desired):
-        value = v_desired.get()
-        stored_value = value
-        return stored_value
+
+
+    def get_voltageDesired_button_value(self, v_desired):
+   		self.Entry = self.builder.get_object("Entry")
+        desiredVoltage = float(self.Entry.get_text())
+       
 
     def windows_destroy(self, window):
         Gtk.main_quit()

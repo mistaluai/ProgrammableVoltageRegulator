@@ -126,7 +126,7 @@ class Embedded:
         self.globalDutyCycle += self.pid
         if self.globalDutyCycle > 100:
             self.globalDutyCycle = 100
-        else if self.globalDutyCycle < 0: 
+        elif self.globalDutyCycle < 0: 
         	self.globalDutyCycle = 0
         self.prevError = error
         self.prevMeasurment = outputVoltage

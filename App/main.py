@@ -211,8 +211,8 @@ class Embedded:
 if __name__ == "__main__":
     uiapp = UI()
     embeddedObject = Embedded()
-    threading.Thread(target=uiapp.main(), args=(*args, **kwargs)).start()
-    threading.Thread(target=embeddedObject.embeddedMain(), args=(*args, **kwargs)).start()
+    threading.Thread(target=uiapp.main()).start()
+    threading.Thread(target=embeddedObject.embeddedMain()).start()
     
     
 

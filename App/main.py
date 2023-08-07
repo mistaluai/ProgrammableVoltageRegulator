@@ -9,6 +9,7 @@ import sys
 import subprocess
 import matplotlib.pyplot as plt
 from multiprocessing import Process
+import threading
 # ui and gtk
 import gi
 
@@ -210,8 +211,8 @@ class Embedded:
 if __name__ == "__main__":
     uiapp = UI()
     embeddedObject = Embedded()
-    Process(target=uiapp.main()).start()
-    Process(target=embeddedObject.embeddedMain()).start()
+    threading.Thread(target=uiapp.main(), args=(*args, **kwargs)).start()
+    threading.Thread(target=embeddedObject.embeddedMain(), args=(*args, **kwargs)).start()
     
     
 

@@ -7,7 +7,7 @@ from time import sleep
 import RPi.GPIO as GPIO
 import sys
 import subprocess
-
+import matplotlib.pyplot as plt
 
 #global variables
 desiredVoltage = 0
@@ -31,7 +31,6 @@ class Embedded:
 	CH_inputVoltage = None
 	CH_outputVoltage = None
 	CH_shuntVoltage = None
-	CH_pwmOUT = None
 	CH_pwmIN = None
 	def __init__(self):
 		#Analog To Digital
@@ -47,6 +46,7 @@ class Embedded:
 		self.CH_inputVoltage = AnalogIn(mcp, MCP.P1, MCP.P0)
 		self.CH_outputVoltage = AnalogIn(mcp, MCP.P3, MCP.P2)
 		self.CH_shuntVoltage = AnalogIn(mcp, MCP.P4, MCP.P5)
+		self.CH_pwmIN = AnalogIn(mcp,MCP.P6)
 		print("Diffrential Channels Defined")
 		#board
 		GPIO.setmode(GPIO.BCM)
@@ -104,9 +104,13 @@ if __name__ == "__main__":
 	embeddedObject = Embedded()
 	f = int(input("enter f "))
 	dc = int(input("enter dc "))
-	while True:
+	#embeddedObject.debugAnalogInput()
+	for i in range(100):
 		embeddedObject.pwmSignal(dc,f)
-		embeddedObject.debugAnalogInput()
-		sleep(0.1)
+	    value = embeddedObject.CH_pwmIN.voltage
+	    values.append(value)
+	    sleep(0.01)
+	plt.plot(values)
+	plt.show()
 
 

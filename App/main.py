@@ -207,4 +207,5 @@ if __name__ == "__main__":
         # embeddedObject.debugAnalogInput()
         print(desiredVoltage)
         uiapp.main()
+        uiapp.updateOutputVoltage(desiredVoltage)
         sleep(embeddedObject.timestep)

@@ -19,7 +19,7 @@ from gi.repository import Gtk
 UI_FILE = "UI.xml"
 
 # global variables
-desiredVoltage = 10
+desiredVoltage = 0
 # analog variables
 inputVoltage = 0
 outputVoltage = 0

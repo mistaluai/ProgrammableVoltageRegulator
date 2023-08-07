@@ -200,6 +200,7 @@ if __name__ == "__main__":
     embeddedObject = Embedded()
     print("embedded loop started")
     while True:
-        embeddedObject.debugAnalogInput()
+        #embeddedObject.debugAnalogInput()
+        print(desiredVoltage)
         uiapp.main()
         sleep(embeddedObject.timestep)

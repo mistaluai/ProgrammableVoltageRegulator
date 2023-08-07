@@ -175,7 +175,7 @@
             </attributes>
           </object>
           <packing>
-            <property name="x">118</property>
+            <property name="x">164</property>
             <property name="y">183</property>
           </packing>
         </child>
@@ -195,7 +195,7 @@
             </attributes>
           </object>
           <packing>
-            <property name="x">115</property>
+            <property name="x">163</property>
             <property name="y">242</property>
           </packing>
         </child>
@@ -215,7 +215,7 @@
             </attributes>
           </object>
           <packing>
-            <property name="x">118</property>
+            <property name="x">166</property>
             <property name="y">296</property>
           </packing>
         </child>

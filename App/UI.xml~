@@ -166,7 +166,7 @@
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <property name="label" translatable="yes">5.5v</property>
-            <property name="width-chars">28</property>
+            <property name="width-chars">10</property>
             <property name="xalign">1</property>
             <attributes>
               <attribute name="font-desc" value="Helvetica Neue Bold 16"/>
@@ -175,7 +175,7 @@
             </attributes>
           </object>
           <packing>
-            <property name="x">125</property>
+            <property name="x">118</property>
             <property name="y">183</property>
           </packing>
         </child>
@@ -186,7 +186,7 @@
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <property name="label" translatable="yes">35mA</property>
-            <property name="width-chars">29</property>
+            <property name="width-chars">10</property>
             <property name="xalign">1</property>
             <attributes>
               <attribute name="font-desc" value="Helvetica Neue Bold 16"/>
@@ -206,8 +206,7 @@
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <property name="label" translatable="yes">300mWatt</property>
-            <property name="width-chars">35</property>
-            <property name="max-width-chars">14</property>
+            <property name="width-chars">10</property>
             <property name="xalign">1</property>
             <attributes>
               <attribute name="font-desc" value="Helvetica Neue Bold 16"/>
@@ -216,7 +215,7 @@
             </attributes>
           </object>
           <packing>
-            <property name="x">76</property>
+            <property name="x">118</property>
             <property name="y">296</property>
           </packing>
         </child>

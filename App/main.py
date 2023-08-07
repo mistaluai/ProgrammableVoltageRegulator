@@ -200,9 +200,6 @@ if __name__ == "__main__":
     embeddedObject = Embedded()
     print("embedded loop started")
     while True:
-        embeddedObject.pwmSignal(dc, f)
-        value = embeddedObject.CH_pwmIN.voltage
-        values.append(value)
         embeddedObject.debugAnalogInput()
         uiapp.main()
         sleep(embeddedObject.timestep)

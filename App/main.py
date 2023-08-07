@@ -192,6 +192,7 @@ class Embedded:
         print("pwm enabled")
 
     def embeddedMain(self):
+    	pass
 
 
 if __name__ == "__main__":

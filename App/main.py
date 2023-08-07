@@ -57,15 +57,14 @@ class UI:
     def updateOutputVoltage(self, outputVoltage):
         self.Vout1 = self.builder.get_object("V_out")
         self.Vout1.set_text(str(outputVoltage) + "v")
-        
 
-    def updateCurrent(self,current):
-        self.Current=self.builder.get_object("Current") 
-        self.Current.set_text(str(current)+"mA") 
+    def updateCurrent(self, current):
+        self.Current = self.builder.get_object("Current")
+        self.Current.set_text(str(current) + "mA")
 
-    def updatePowerConsumption(self,powerconsumption):
-       self.PowerConsumption=self.builder.get_object("power_consumption") 
-       self.PowerConsumption.set_text(str(powerconsumption)+"mWatt")
+    def updatePowerConsumption(self, powerconsumption):
+        self.PowerConsumption = self.builder.get_object("power_consumption")
+        self.PowerConsumption.set_text(str(powerconsumption) + "mWatt")
 
     def windows_destroy(self, window):
         Gtk.main_quit()
@@ -192,21 +191,17 @@ class Embedded:
         self.currentFrequency = frequency
         print("pwm enabled")
 
-
     def embeddedMain(self):
-	   
 
 
 if __name__ == "__main__":
     uiapp = UI()
     embeddedObject = Embedded()
-   	print("embedded loop started")
-	while True:
-	    embeddedObject.pwmSignal(dc, f)
-	    value = embeddedObject.CH_pwmIN.voltage
-	    values.append(value)
-	    embeddedObject.debugAnalogInput()
-	    uiapp.main()
-	    sleep(embeddedObject.timestep)
-
-
+    print("embedded loop started")
+    while True:
+        embeddedObject.pwmSignal(dc, f)
+        value = embeddedObject.CH_pwmIN.voltage
+        values.append(value)
+        embeddedObject.debugAnalogInput()
+        uiapp.main()
+        sleep(embeddedObject.timestep)

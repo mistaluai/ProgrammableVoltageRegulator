@@ -39,7 +39,6 @@ class UI:
 
         self.window = self.builder.get_object("window")
         self.window_label = self.builder.get_object("Controller")
-        self.updateOutputVoltage(20)
         self.window.show_all()
 
     def button_clicked(self, Apply):
@@ -197,6 +196,7 @@ class Embedded:
 
 if __name__ == "__main__":
 	uiapp = UI()
+	uiapp.main()
     embeddedObject = Embedded()
     f = int(input("enter f "))
     dc = int(input("enter dc "))

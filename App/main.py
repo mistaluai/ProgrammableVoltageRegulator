@@ -56,10 +56,13 @@ class UI:
     def updateOutputVoltage(self, outputVoltage):
         self.Vout1 = self.builder.get_object("V_out")
         self.Vout1.set_text(str(outputVoltage) + "v")
-        def updateCurrent(self,current)
+        
+
+    def updateCurrent(self,current)
         self.Current=self.builder.get_object("Current") 
         self.Current.set_text(str(current)+"mA") 
-   def updatePowerConsumption(self,powerconsumption)
+        
+    def updatePowerConsumption(self,powerconsumption)
        self.PowerConsumption=self.builder.get_object("power_consumption") 
        self.PowerConsumption.set_text(str(powerconsumption)+"mWatt")
 

@@ -183,20 +183,27 @@ class Embedded:
         print("pwm enabled")
 
 
+    def embeddedMain():
+	    f = int(input("enter f "))
+	    dc = int(input("enter dc "))
+	    values = []
+	    for i in range(100):
+	        embeddedObject.pwmSignal(dc, f)
+	        value = embeddedObject.CH_pwmIN.voltage
+	        values.append(value)
+	        embeddedObject.debugAnalogInput()
+	        sleep(embeddedObject.timestep)
+	    plt.plot(values)
+	    plt.show()
+
+
+
 if __name__ == "__main__":
     uiapp = UI()
-    Process(target=uiapp.main()).start()
     embeddedObject = Embedded()
-    f = int(input("enter f "))
-    dc = int(input("enter dc "))
-    values = []
-    for i in range(100):
-        embeddedObject.pwmSignal(dc, f)
-        value = embeddedObject.CH_pwmIN.voltage
-        values.append(value)
-        embeddedObject.debugAnalogInput()
-        sleep(embeddedObject.timestep)
-    plt.plot(values)
-    plt.show()
+    Process(target=uiapp.main()).start()
+    Process(target=embeddedObject.embeddedMain()).start()
+    
+    
 
 

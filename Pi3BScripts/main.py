@@ -107,6 +107,7 @@ if __name__ == "__main__":
     f = int(input("enter f "))
     dc = int(input("enter dc "))
     # embeddedObject.debugAnalogInput()
+    values = []
     for i in range(100):
         embeddedObject.pwmSignal(dc, f)
         value = embeddedObject.CH_pwmIN.voltage

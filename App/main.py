@@ -22,10 +22,7 @@ outputVoltage = 0
 shuntVoltage = 0
 current = 0
 resistance = 0
-# pid variables
-Kp = 0
-Ki = 0
-Kd = 0
+
 # constants
 shunt_resistance = 10
 inputVoltage_factor = 109 / 20
@@ -68,11 +65,23 @@ class UI:
 
 
 class Embedded:
+	timestep = 0.01
     # analog channels
     CH_inputVoltage = None
     CH_outputVoltage = None
     CH_shuntVoltage = None
     CH_pwmIN = None
+    # pid variables
+	Kp = 0
+	Ki = 0
+	Kd = 0
+	integrator=0
+	maxIntegrator = 0
+	diffrentiator=0
+	prevError =0
+	prevMeasurment=0
+	error=0
+	globalDutyCycle =0
 
     def __init__(self):
         # Analog To Digital
@@ -92,6 +101,30 @@ class Embedded:
         print("Diffrential Channels Defined")
         # board
         GPIO.setmode(GPIO.BCM)
+
+
+    def PIDinit():
+    	self.integrator=0
+		self.diffrentiator=0
+		self.prevError =0
+		self.error=0
+		self.prevMeasurment=0
+		self.globalDutyCycle = (desiredVoltage / inputVoltage) * 100
+
+	def PIDupdate():
+		self.pid = 0
+		self.error = desiredVoltage - outputVoltage
+
+		self.proportional = self.Kp * self.error
+		self.integrator = self.integrator + self.error * self.timestep
+		self.diffrentiator = (self.error - self.prevError)/self.timestep
+
+		self.globalDutyCycle += self.pid
+		if self.globalDutyCycle > 100: self.globalDutyCycle=100
+		else if self.globalDutyCycle < 0: self.globalDutyCycle=0
+		self.prevError=error
+		self.prevMeasurment=outputVoltage
+
 
     def getInputVoltage(self):
         inputVoltage = inputVoltage_factor * self.CH_inputVoltage.voltage
@@ -153,7 +186,7 @@ if __name__ == "__main__":
         value = embeddedObject.CH_pwmIN.voltage
         values.append(value)
         embeddedObject.debugAnalogInput()
-        sleep(0.01)
+        sleep(embeddedObject.timestep)
     plt.plot(values)
     plt.show()
 

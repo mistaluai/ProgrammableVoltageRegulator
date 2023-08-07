@@ -105,8 +105,14 @@ class Embedded:
         # board
         GPIO.setmode(GPIO.BCM)
     
-    
-    def PIDinit():
+    prevDesiredVoltage=0
+    def checkForDesiredVoltage(self): #meant to be executed in the loop
+    	if self.prevDesiredVoltage!=desiredVoltage:
+    		PIDinit()
+    	prevDesiredVoltage=desiredVoltage
+
+
+    def PIDinit(self):
         self.integrator = 0
         self.diffrentiator = 0
         self.prevError = 0
@@ -115,7 +121,7 @@ class Embedded:
         self.globalDutyCycle = (desiredVoltage / inputVoltage) * 100
     
     
-    def PIDupdate():
+    def PIDupdate(self):
         self.pid = 0
         self.error = desiredVoltage - outputVoltage
     

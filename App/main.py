@@ -71,7 +71,7 @@ class UI:
         Gtk.main_quit()
 
     def main(self):
-        Gtk.main()
+        Gtk.main_iteration()
 
 
 class Embedded:

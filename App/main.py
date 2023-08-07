@@ -66,8 +66,7 @@ class UI:
 class Embedded:
     timestep = 0.01
     # analog channels
-    
-    
+
     CH_inputVoltage = None
     CH_outputVoltage = None
     CH_shuntVoltage = None
@@ -83,8 +82,7 @@ class Embedded:
     prevMeasurment = 0
     error = 0
     globalDutyCycle = 0
-    
-    
+
     def __init__(self):
         # Analog To Digital
         # create the spi bus
@@ -103,13 +101,13 @@ class Embedded:
         print("Diffrential Channels Defined")
         # board
         GPIO.setmode(GPIO.BCM)
-    
-    prevDesiredVoltage=0
-    def checkForDesiredVoltage(self): #meant to be executed in the loop
-    	if self.prevDesiredVoltage!=desiredVoltage:
-    		PIDinit()
-    	prevDesiredVoltage=desiredVoltage
 
+    prevDesiredVoltage = 0
+
+    def checkForDesiredVoltage(self):  # meant to be executed in the loop
+        if self.prevDesiredVoltage != desiredVoltage:
+            PIDinit()
+        prevDesiredVoltage = desiredVoltage
 
     def PIDinit(self):
         self.integrator = 0
@@ -118,45 +116,39 @@ class Embedded:
         self.error = 0
         self.prevMeasurment = 0
         self.globalDutyCycle = (desiredVoltage / inputVoltage) * 100
-    
-    
+
     def PIDupdate(self):
         self.pid = 0
         self.error = desiredVoltage - outputVoltage
-    
+
         self.proportional = self.Kp * self.error
         self.integrator = self.integrator + self.error * self.timestep
         self.diffrentiator = (self.error - self.prevError) / self.timestep
-    
+
         self.globalDutyCycle += self.pid
         if self.globalDutyCycle > 100:
             self.globalDutyCycle = 100
-        elif self.globalDutyCycle < 0: 
-        	self.globalDutyCycle = 0
+        elif self.globalDutyCycle < 0:
+            self.globalDutyCycle = 0
         self.prevError = error
         self.prevMeasurment = outputVoltage
-    
-    
+
     def getInputVoltage(self):
         inputVoltage = inputVoltage_factor * self.CH_inputVoltage.voltage
-    
-    
+
     def getOutputVoltage(self):
         outputVoltage = outputVoltage_factor * self.CH_outputVoltage.voltage - self.CH_shuntVoltage.voltage;
-    
-    
+
     def getCurrent(self):
         shuntVoltage = self.CH_shuntVoltage.voltage
         current = shuntVoltage * 100;
-    
-    
+
     def getResistance(self):
         if current != 0:
             resistance = outputVoltage / current
         else:
             resistance = 0
-    
-    
+
     def debugAnalogInput(self):
         print("about to call something")
         self.getInputVoltage()
@@ -166,26 +158,22 @@ class Embedded:
         print("Input Voltage (V): " + str(inputVoltage) + "\nOutput Voltage (V): " + str(
             outputVoltage) + "\nShunt Voltage (V): " + str(shuntVoltage) + "\nTotal Current (mA): " + str(
             current) + "\nTotal Resistance (Ω): " + str(resistance))
-    
-    
+
     currentCycle = 0
     currentFrequency = 0;
-    
-    
+
     def pwmSignal(self, duty_cycle, frequency):
         if self.currentFrequency != frequency or self.currentCycle != duty_cycle:
             self.disablePWM()
             self.enablePWM(duty_cycle, frequency)
             print("changes done")
-    
-    
+
     def disablePWM(self):
         try:
             subprocess.call(["pkill", "-f", "pwm.py"])
         except:
             pass
-    
-    
+
     def enablePWM(self, duty_cycle, frequency):
         pwmScript = subprocess.Popen(
             ["python", "/home/proj/Documents/embproj/Pi3BScripts/pwm.py", "23", str(frequency), str(duty_cycle)])
@@ -195,12 +183,12 @@ class Embedded:
 
 
 if __name__ == "__main__":
-	uiapp = UI()
-	uiapp.main()
+    uiapp = UI()
+    uiapp.main()
     embeddedObject = Embedded()
     f = int(input("enter f "))
     dc = int(input("enter dc "))
-
+    
     values = []
     for i in range(100):
         embeddedObject.pwmSignal(dc, f)
@@ -208,7 +196,7 @@ if __name__ == "__main__":
         values.append(value)
         embeddedObject.debugAnalogInput()
         sleep(embeddedObject.timestep)
-    plt.plot(values)
-    plt.show()
+plt.plot(values)
+plt.show()
 
 

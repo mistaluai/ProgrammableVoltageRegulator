@@ -194,26 +194,19 @@ class Embedded:
 
 
     def embeddedMain(self):
-	    f = int(input("enter f "))
-	    dc = int(input("enter dc "))
-	    values = []
-	    for i in range(100):
-	        embeddedObject.pwmSignal(dc, f)
-	        value = embeddedObject.CH_pwmIN.voltage
-	        values.append(value)
-	        embeddedObject.debugAnalogInput()
-	        sleep(embeddedObject.timestep)
-	    plt.plot(values)
-	    plt.show()
-
+	   
 
 
 if __name__ == "__main__":
     uiapp = UI()
     embeddedObject = Embedded()
-    threading.Thread(target=uiapp.main()).start()
-    threading.Thread(target=embeddedObject.embeddedMain()).start()
-    
-    
+   	print("embedded loop started")
+	while True:
+	    embeddedObject.pwmSignal(dc, f)
+	    value = embeddedObject.CH_pwmIN.voltage
+	    values.append(value)
+	    embeddedObject.debugAnalogInput()
+	    uiapp.main()
+	    sleep(embeddedObject.timestep)
 
 

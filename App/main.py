@@ -8,6 +8,7 @@ import RPi.GPIO as GPIO
 import sys
 import subprocess
 import matplotlib.pyplot as plt
+from multiprocessing import Process
 # ui and gtk
 import gi
 
@@ -61,7 +62,6 @@ class UI:
 
     def main(self):
         Gtk.main()
-        print("it is recursive")
 
 
 class Embedded:
@@ -185,7 +185,7 @@ class Embedded:
 
 if __name__ == "__main__":
     uiapp = UI()
-    uiapp.main()
+    Process(target=uiapp.main()).start()
     embeddedObject = Embedded()
     f = int(input("enter f "))
     dc = int(input("enter dc "))

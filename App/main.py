@@ -8,11 +8,13 @@ import RPi.GPIO as GPIO
 import sys
 import subprocess
 import matplotlib.pyplot as plt
-#ui and gtk
+# ui and gtk
 import gi
+
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
-UI_FILE="UI.xml"
+
+UI_FILE = "UI.xml"
 
 # global variables
 desiredVoltage = 0
@@ -26,63 +28,64 @@ resistance = 0
 # constants
 shunt_resistance = 10
 inputVoltage_factor = 109 / 20
-outputVoltage_factor = 52/7
+outputVoltage_factor = 52 / 7
+
 
 class UI:
     def __init__(self):
         self.builder = Gtk.Builder()
         self.builder.add_from_file(UI_FILE)
         self.builder.connect_signals(self)
-        
+
         self.window = self.builder.get_object("window")
         self.window_label = self.builder.get_object("Controller")
         self.updateOutputVoltage(20)
         self.window.show_all()
-        
-    def button_clicked(self,Apply):
+
+    def button_clicked(self, Apply):
         self.Entry = self.builder.get_object("Entry")
         self.Vout = float(self.Entry.get_text())
-        print (self.Vout)
-        
-        
-        
-        
-        self.Current=self.builder.get_object("Current")
+        print(self.Vout)
+
+        self.Current = self.builder.get_object("Current")
         self.Current.set_text(str(1))
-        
-        self.power_consumption=self.builder.get_object("power_consumption")
+
+        self.power_consumption = self.builder.get_object("power_consumption")
         self.power_consumption.set_text(str(3))
 
     def updateOutputVoltage(self, outputVoltage):
-        self.Vout1=self.builder.get_object("V_out")
+        self.Vout1 = self.builder.get_object("V_out")
         self.Vout1.set_text(str(outputVoltage) + "v")
-        
-    def windows_destroy(self,window):
+
+    def windows_destroy(self, window):
         Gtk.main_quit()
-            
+
     def main(self):
         Gtk.main()
 
 
 class Embedded:
-	timestep = 0.01
+    timestep = 0.01
     # analog channels
+    
+    
     CH_inputVoltage = None
     CH_outputVoltage = None
     CH_shuntVoltage = None
     CH_pwmIN = None
     # pid variables
-	Kp = 0
-	Ki = 0
-	Kd = 0
-	integrator=0
-	maxIntegrator = 0
-	diffrentiator=0
-	prevError =0
-	prevMeasurment=0
-	error=0
-	globalDutyCycle =0
-
+    Kp = 0
+    Ki = 0
+    Kd = 0
+    integrator = 0
+    maxIntegrator = 0
+    diffrentiator = 0
+    prevError = 0
+    prevMeasurment = 0
+    error = 0
+    globalDutyCycle = 0
+    
+    
     def __init__(self):
         # Analog To Digital
         # create the spi bus
@@ -101,47 +104,53 @@ class Embedded:
         print("Diffrential Channels Defined")
         # board
         GPIO.setmode(GPIO.BCM)
-
-
+    
+    
     def PIDinit():
-    	self.integrator=0
-		self.diffrentiator=0
-		self.prevError =0
-		self.error=0
-		self.prevMeasurment=0
-		self.globalDutyCycle = (desiredVoltage / inputVoltage) * 100
-
-	def PIDupdate():
-		self.pid = 0
-		self.error = desiredVoltage - outputVoltage
-
-		self.proportional = self.Kp * self.error
-		self.integrator = self.integrator + self.error * self.timestep
-		self.diffrentiator = (self.error - self.prevError)/self.timestep
-
-		self.globalDutyCycle += self.pid
-		if self.globalDutyCycle > 100: self.globalDutyCycle=100
-		else if self.globalDutyCycle < 0: self.globalDutyCycle=0
-		self.prevError=error
-		self.prevMeasurment=outputVoltage
-
-
+        self.integrator = 0
+        self.diffrentiator = 0
+        self.prevError = 0
+        self.error = 0
+        self.prevMeasurment = 0
+        self.globalDutyCycle = (desiredVoltage / inputVoltage) * 100
+    
+    
+    def PIDupdate():
+        self.pid = 0
+        self.error = desiredVoltage - outputVoltage
+    
+        self.proportional = self.Kp * self.error
+        self.integrator = self.integrator + self.error * self.timestep
+        self.diffrentiator = (self.error - self.prevError) / self.timestep
+    
+        self.globalDutyCycle += self.pid
+        if self.globalDutyCycle > 100:
+            self.globalDutyCycle = 100
+        else if self.globalDutyCycle < 0: self.globalDutyCycle = 0
+        self.prevError = error
+        self.prevMeasurment = outputVoltage
+    
+    
     def getInputVoltage(self):
         inputVoltage = inputVoltage_factor * self.CH_inputVoltage.voltage
-
+    
+    
     def getOutputVoltage(self):
         outputVoltage = outputVoltage_factor * self.CH_outputVoltage.voltage - self.CH_shuntVoltage.voltage;
-
+    
+    
     def getCurrent(self):
         shuntVoltage = self.CH_shuntVoltage.voltage
         current = shuntVoltage * 100;
-
+    
+    
     def getResistance(self):
         if current != 0:
             resistance = outputVoltage / current
         else:
             resistance = 0
-
+    
+    
     def debugAnalogInput(self):
         print("about to call something")
         self.getInputVoltage()
@@ -151,22 +160,26 @@ class Embedded:
         print("Input Voltage (V): " + str(inputVoltage) + "\nOutput Voltage (V): " + str(
             outputVoltage) + "\nShunt Voltage (V): " + str(shuntVoltage) + "\nTotal Current (mA): " + str(
             current) + "\nTotal Resistance (Ω): " + str(resistance))
-
+    
+    
     currentCycle = 0
     currentFrequency = 0;
-
+    
+    
     def pwmSignal(self, duty_cycle, frequency):
         if self.currentFrequency != frequency or self.currentCycle != duty_cycle:
             self.disablePWM()
             self.enablePWM(duty_cycle, frequency)
             print("changes done")
-
+    
+    
     def disablePWM(self):
         try:
             subprocess.call(["pkill", "-f", "pwm.py"])
         except:
             pass
-
+    
+    
     def enablePWM(self, duty_cycle, frequency):
         pwmScript = subprocess.Popen(
             ["python", "/home/proj/Documents/embproj/Pi3BScripts/pwm.py", "23", str(frequency), str(duty_cycle)])
@@ -179,7 +192,7 @@ if __name__ == "__main__":
     embeddedObject = Embedded()
     f = int(input("enter f "))
     dc = int(input("enter dc "))
-   
+
     values = []
     for i in range(100):
         embeddedObject.pwmSignal(dc, f)

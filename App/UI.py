@@ -11,6 +11,7 @@ class UI:
         
         self.window = self.builder.get_object("window")
         self.window_label = self.builder.get_object("Controller")
+        updateOutputVoltage(20)
         self.window.show_all()
         
     def button_clicked(self,Apply):
@@ -18,8 +19,7 @@ class UI:
         self.Vout = float(self.Entry.get_text())
         print (self.Vout)
         
-        self.Vout1=self.builder.get_object("V_out")
-        self.Vout1.set_text(str(2))
+        
         
         
         self.Current=self.builder.get_object("Current")
@@ -27,6 +27,10 @@ class UI:
         
         self.power_consumption=self.builder.get_object("power_consumption")
         self.power_consumption.set_text(str(3))
+
+    def updateOutputVoltage(self, outputVoltage):
+        self.Vout1=self.builder.get_object("V_out")
+        self.Vout1.set_text(str(outputVoltage) + "v")
         
     def windows_destroy(self,window):
         Gtk.main_quit()

@@ -61,6 +61,7 @@ class UI:
 
     def main(self):
         Gtk.main()
+        print("it is recursive")
 
 
 class Embedded:
@@ -188,7 +189,6 @@ if __name__ == "__main__":
     embeddedObject = Embedded()
     f = int(input("enter f "))
     dc = int(input("enter dc "))
-    
     values = []
     for i in range(100):
         embeddedObject.pwmSignal(dc, f)
@@ -196,7 +196,7 @@ if __name__ == "__main__":
         values.append(value)
         embeddedObject.debugAnalogInput()
         sleep(embeddedObject.timestep)
-plt.plot(values)
-plt.show()
+    plt.plot(values)
+    plt.show()
 
 

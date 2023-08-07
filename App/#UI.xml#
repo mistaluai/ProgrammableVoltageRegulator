@@ -33,7 +33,7 @@
             <attributes>
               <attribute name="font-desc" value="Helvetica Neue Bold 16"/>
               <attribute name="weight" value="bold"/>
-              <attribute name="foreground" value="#093170"/>
+              <attribute name="foreground" value="#1a1a5f5fb4b4"/>
             </attributes>
           </object>
           <packing>
@@ -49,11 +49,9 @@
             <property name="input-purpose">number</property>
             <property name="adjustment">adjustment1</property>
             <property name="digits">2</property>
-             <attributes>
-              <attribute name="font-desc" value="Helvetica Neue Bold 16"/>
-              <attribute name="weight" value="bold"/>
-              <attribute name="foreground" value="#093170"/>
-            </attributes>
+            <style>
+              <class name="&lt;attribute name=&quot;font-desc&quot; value=&quot;Helvetica Neue Bold 16&quot;/&gt;"/>
+            </style>
           </object>
           <packing>
             <property name="x">157</property>
@@ -88,7 +86,7 @@
             <attributes>
               <attribute name="font-desc" value="Helvetica Neue Bold 16"/>
               <attribute name="weight" value="bold"/>
-              <attribute name="foreground" value="#093170"/>
+              <attribute name="foreground" value="#1a1a5f5fb4b4"/>
             </attributes>
           </object>
           <packing>
@@ -107,7 +105,7 @@
             <attributes>
               <attribute name="font-desc" value="Helvetica Neue Bold 16"/>
               <attribute name="weight" value="bold"/>
-              <attribute name="foreground" value="#093170"/>
+              <attribute name="foreground" value="#1a1a5f5fb4b4"/>
             </attributes>
           </object>
           <packing>
@@ -126,7 +124,7 @@
             <attributes>
               <attribute name="font-desc" value="Helvetica Neue Bold 16"/>
               <attribute name="weight" value="bold"/>
-              <attribute name="foreground" value="#093170"/>
+              <attribute name="foreground" value="#1a1a5f5fb4b4"/>
             </attributes>
           </object>
           <packing>
@@ -173,7 +171,6 @@
             <attributes>
               <attribute name="font-desc" value="Helvetica Neue Bold 16"/>
               <attribute name="weight" value="bold"/>
-              <attribute name="foreground" value="#093170"/>
             </attributes>
           </object>
           <packing>
@@ -192,7 +189,7 @@
             <attributes>
               <attribute name="font-desc" value="Helvetica Neue Bold 16"/>
               <attribute name="weight" value="bold"/>
-              <attribute name="foreground" value="#093170"/>
+              <attribute name="foreground" value="#1a1a5f5fb4b4"/>
             </attributes>
           </object>
           <packing>
@@ -211,7 +208,7 @@
             <attributes>
               <attribute name="font-desc" value="Helvetica Neue Bold 16"/>
               <attribute name="weight" value="bold"/>
-              <attribute name="foreground" value="#093170"/>
+              <attribute name="foreground" value="#1a1a5f5fb4b4"/>
             </attributes>
           </object>
           <packing>

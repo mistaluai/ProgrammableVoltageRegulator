@@ -33,7 +33,7 @@
             <attributes>
               <attribute name="font-desc" value="Helvetica Neue Bold 16"/>
               <attribute name="weight" value="bold"/>
-              <attribute name="foreground" value="#093170"/>
+              <attribute name="foreground" value="#1a1a5f5fb4b4"/>
             </attributes>
           </object>
           <packing>
@@ -46,14 +46,11 @@
             <property name="height-request">63</property>
             <property name="visible">True</property>
             <property name="can-focus">True</property>
+            <property name="primary-icon-stock">gtk-apply</property>
             <property name="input-purpose">number</property>
+            <property name="show-emoji-icon">True</property>
             <property name="adjustment">adjustment1</property>
             <property name="digits">2</property>
-             <attributes>
-              <attribute name="font-desc" value="Helvetica Neue Bold 16"/>
-              <attribute name="weight" value="bold"/>
-              <attribute name="foreground" value="#093170"/>
-            </attributes>
           </object>
           <packing>
             <property name="x">157</property>
@@ -88,7 +85,7 @@
             <attributes>
               <attribute name="font-desc" value="Helvetica Neue Bold 16"/>
               <attribute name="weight" value="bold"/>
-              <attribute name="foreground" value="#093170"/>
+              <attribute name="foreground" value="#1a1a5f5fb4b4"/>
             </attributes>
           </object>
           <packing>
@@ -107,7 +104,7 @@
             <attributes>
               <attribute name="font-desc" value="Helvetica Neue Bold 16"/>
               <attribute name="weight" value="bold"/>
-              <attribute name="foreground" value="#093170"/>
+              <attribute name="foreground" value="#1a1a5f5fb4b4"/>
             </attributes>
           </object>
           <packing>
@@ -126,7 +123,7 @@
             <attributes>
               <attribute name="font-desc" value="Helvetica Neue Bold 16"/>
               <attribute name="weight" value="bold"/>
-              <attribute name="foreground" value="#093170"/>
+              <attribute name="foreground" value="#1a1a5f5fb4b4"/>
             </attributes>
           </object>
           <packing>
@@ -173,7 +170,7 @@
             <attributes>
               <attribute name="font-desc" value="Helvetica Neue Bold 16"/>
               <attribute name="weight" value="bold"/>
-              <attribute name="foreground" value="#093170"/>
+              <attribute name="foreground" value="#1a1a5f5fb4b4"/>
             </attributes>
           </object>
           <packing>
@@ -192,7 +189,7 @@
             <attributes>
               <attribute name="font-desc" value="Helvetica Neue Bold 16"/>
               <attribute name="weight" value="bold"/>
-              <attribute name="foreground" value="#093170"/>
+              <attribute name="foreground" value="#1a1a5f5fb4b4"/>
             </attributes>
           </object>
           <packing>
@@ -211,49 +208,12 @@
             <attributes>
               <attribute name="font-desc" value="Helvetica Neue Bold 16"/>
               <attribute name="weight" value="bold"/>
-              <attribute name="foreground" value="#093170"/>
+              <attribute name="foreground" value="#1a1a5f5fb4b4"/>
             </attributes>
           </object>
           <packing>
             <property name="x">76</property>
             <property name="y">296</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkSeparator">
-            <property name="width-request">280</property>
-            <property name="height-request">150</property>
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-          </object>
-          <packing>
-            <property name="y">189</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkSeparator">
-            <property name="width-request">237</property>
-            <property name="height-request">2</property>
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="opacity">0.5000000002235174</property>
-          </object>
-          <packing>
-            <property name="x">16</property>
-            <property name="y">237</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkSeparator">
-            <property name="width-request">237</property>
-            <property name="height-request">2</property>
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="opacity">0.50196078431372548</property>
-          </object>
-          <packing>
-            <property name="x">17</property>
-            <property name="y">291</property>
           </packing>
         </child>
       </object>

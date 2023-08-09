@@ -114,7 +114,7 @@ class Embedded:
     currentFrequency = 0
 
     def setCycle(self, ui):
-        if ui.prevDesiredVoltage != ui.desiredVoltage:
+        if self.prevDesiredVoltage != ui.desiredVoltage:
             if ui.desiredVoltage != 0:
                 if ui.resistance != 330 and ui.resistance != 560 and ui.resistance != 100:
                     if ui.resistance > 100 and ui.resistance < 330:
@@ -131,7 +131,7 @@ class Embedded:
                     self.dutyCycle = 0
             else:
                 self.dutyCycle = 0
-        ui.prevDesiredVoltage = ui.desiredVoltage
+        self.prevDesiredVoltage = ui.desiredVoltage
 
     def manualControl(self, ui):
         self.dutyCycle = self.dutyCycle + ui.CycleIncrease + ui.CycleDecrease

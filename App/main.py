@@ -72,7 +72,7 @@ class UI:
     def stop_clicked(self, Stop):
         self.desiredVoltage=0
 
-    def updatePWMlabel(self, PWM, cycle):
+    def updatePWMlabel(self, cycle):
         self.label = self.builder.get_object("PWM")
         self.label.set_label(str(cycle),"%")
 

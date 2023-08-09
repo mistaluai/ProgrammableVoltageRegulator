@@ -67,16 +67,18 @@ class UI:
             self.warninglabel.set_label("Couldn't apply voltage, current will exceed 100mA")
         else:
             self.desiredVoltage = self.Vout
+    
+    
     def stop_clicked(self, Stop):
-    	desiredVoltage=0
+        self.desiredVoltage=0
 
-   	def updatePWMlabel(self, PWM, cycle):
-   		self.label = self.builder.get_object("PWM")
-   		self.label.set_label(str(cycle),"%")
+    def updatePWMlabel(self, PWM, cycle):
+        self.label = self.builder.get_object("PWM")
+        self.label.set_label(str(cycle),"%")
 
     def get_voltageDesired_button_value(self, v_desired):
         self.Entry = self.builder.get_object("Entry")
-        desiredVoltage = float(self.Entry.get_text())
+        self.desiredVoltage = float(self.Entry.get_text())
 
     def windows_destroy(self, window):
         Gtk.main_quit()
@@ -210,9 +212,9 @@ class Embedded:
             self.dutyCycle = 0
 
     def manualControl(self, ui):
-    	self.dutyCycle = self.dutyCycle + ui.CycleIncrease + ui.CycleDecrease
-    	ui.CycleIncrease=0
-    	ui.CycleDecrease=0
+        self.dutyCycle = self.dutyCycle + ui.CycleIncrease + ui.CycleDecrease
+        ui.CycleIncrease=0
+        ui.CycleDecrease=0
 
 
     def pwmSignal(self, duty_cycle, frequency):

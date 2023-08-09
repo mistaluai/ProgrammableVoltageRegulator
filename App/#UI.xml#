@@ -37,14 +37,11 @@
               <attribute name="foreground" value="#090931317070"/>
             </attributes>
           </object>
-          <packing>
-            <property name="y">58</property>
-          </packing>
         </child>
         <child>
           <object class="GtkSpinButton" id="Entry">
-            <property name="width-request">162</property>
-            <property name="height-request">63</property>
+            <property name="width-request">168</property>
+            <property name="height-request">39</property>
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="input-purpose">number</property>
@@ -52,183 +49,23 @@
             <property name="digits">2</property>
           </object>
           <packing>
-            <property name="x">193</property>
-            <property name="y">64</property>
+            <property name="x">202</property>
+            <property name="y">20</property>
           </packing>
         </child>
         <child>
           <object class="GtkButton" id="Apply">
             <property name="label" translatable="yes">Apply</property>
-            <property name="width-request">123</property>
-            <property name="height-request">61</property>
+            <property name="width-request">112</property>
+            <property name="height-request">40</property>
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">True</property>
             <signal name="clicked" handler="button_clicked" swapped="no"/>
           </object>
           <packing>
-            <property name="x">370</property>
-            <property name="y">64</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel" id="v_out">
-            <property name="width-request">113</property>
-            <property name="height-request">80</property>
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="label" translatable="yes">Output Voltage</property>
-            <property name="wrap">True</property>
-            <property name="width-chars">22</property>
-            <property name="max-width-chars">18</property>
-            <property name="xalign">0.10000000149011612</property>
-            <attributes>
-              <attribute name="font-desc" value="Noto Serif Hebrew Heavy Semi-Condensed 16"/>
-              <attribute name="weight" value="bold"/>
-              <attribute name="foreground" value="#090931317070"/>
-            </attributes>
-          </object>
-          <packing>
-            <property name="x">6</property>
-            <property name="y">166</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel" id="current">
-            <property name="width-request">100</property>
-            <property name="height-request">80</property>
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="label" translatable="yes">Current</property>
-            <property name="xalign">0</property>
-            <attributes>
-              <attribute name="font-desc" value="Helvetica Neue Bold 16"/>
-              <attribute name="weight" value="bold"/>
-              <attribute name="foreground" value="#090931317070"/>
-            </attributes>
-          </object>
-          <packing>
-            <property name="x">6</property>
-            <property name="y">222</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel" id="power">
-            <property name="width-request">155</property>
-            <property name="height-request">80</property>
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="label" translatable="yes">Power Consumption</property>
-            <property name="xalign">0</property>
-            <attributes>
-              <attribute name="font-desc" value="Helvetica Neue Bold 16"/>
-              <attribute name="weight" value="bold"/>
-              <attribute name="foreground" value="#090931317070"/>
-            </attributes>
-          </object>
-          <packing>
-            <property name="x">5</property>
-            <property name="y">280</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="graph1">
-            <property name="label" translatable="yes">Graph</property>
-            <property name="width-request">89</property>
-            <property name="height-request">46</property>
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
-          </object>
-          <packing>
-            <property name="x">430</property>
-            <property name="y">176</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="graph2">
-            <property name="label" translatable="yes">Graph</property>
-            <property name="width-request">92</property>
-            <property name="height-request">41</property>
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
-          </object>
-          <packing>
-            <property name="x">431</property>
-            <property name="y">234</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel" id="V_out">
-            <property name="width-request">188</property>
-            <property name="height-request">48</property>
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="label" translatable="yes">5.5v</property>
-            <property name="width-chars">28</property>
-            <property name="xalign">1</property>
-            <attributes>
-              <attribute name="font-desc" value="Helvetica Neue Bold 16"/>
-              <attribute name="weight" value="bold"/>
-              <attribute name="foreground" value="#090931317070"/>
-            </attributes>
-          </object>
-          <packing>
-            <property name="x">74</property>
-            <property name="y">183</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel" id="Current">
-            <property name="width-request">188</property>
-            <property name="height-request">48</property>
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="label" translatable="yes">35mA</property>
-            <property name="width-chars">29</property>
-            <property name="xalign">1</property>
-            <attributes>
-              <attribute name="font-desc" value="Helvetica Neue Bold 16"/>
-              <attribute name="weight" value="bold"/>
-              <attribute name="foreground" value="#090931317070"/>
-            </attributes>
-          </object>
-          <packing>
-            <property name="x">77</property>
-            <property name="y">242</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel" id="power_consumption">
-            <property name="width-request">188</property>
-            <property name="height-request">48</property>
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="label" translatable="yes">300mWatt</property>
-            <property name="width-chars">35</property>
-            <property name="max-width-chars">14</property>
-            <property name="xalign">1</property>
-            <attributes>
-              <attribute name="font-desc" value="Helvetica Neue Bold 16"/>
-              <attribute name="weight" value="bold"/>
-              <attribute name="foreground" value="#090931317070"/>
-            </attributes>
-          </object>
-          <packing>
-            <property name="x">76</property>
-            <property name="y">296</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkSeparator">
-            <property name="width-request">404</property>
-            <property name="height-request">165</property>
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-          </object>
-          <packing>
-            <property name="y">170</property>
+            <property name="x">379</property>
+            <property name="y">95</property>
           </packing>
         </child>
         <child>
@@ -240,7 +77,7 @@
             <property name="opacity">0.5000000002235174</property>
           </object>
           <packing>
-            <property name="y">234</property>
+            <property name="y">161</property>
           </packing>
         </child>
         <child>
@@ -252,7 +89,117 @@
             <property name="opacity">0.50196078431372548</property>
           </object>
           <packing>
-            <property name="y">286</property>
+            <property name="y">324</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="width-request">127</property>
+            <property name="height-request">80</property>
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="label" translatable="yes">Load Resistance</property>
+            <property name="xalign">0.10000000149011612</property>
+            <attributes>
+              <attribute name="font-desc" value="Helvetica Neue Bold 16"/>
+              <attribute name="weight" value="bold"/>
+              <attribute name="foreground" value="#090931317070"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="x">6</property>
+            <property name="y">75</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkEntry" id="resistance">
+            <property name="width-request">168</property>
+            <property name="height-request">40</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+          </object>
+          <packing>
+            <property name="x">202</property>
+            <property name="y">95</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="width-request">182</property>
+            <property name="height-request">80</property>
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="label" translatable="yes">Manual Control</property>
+            <attributes>
+              <attribute name="font-desc" value="Helvetica Neue Bold 16"/>
+              <attribute name="weight" value="bold"/>
+              <attribute name="foreground" value="#090931317070"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="x">7</property>
+            <property name="y">154</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="increase">
+            <property name="label" translatable="yes">+</property>
+            <property name="width-request">50</property>
+            <property name="height-request">34</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <signal name="clicked" handler="ibutton_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">211</property>
+            <property name="y">178</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="decrease">
+            <property name="label" translatable="yes">-</property>
+            <property name="width-request">50</property>
+            <property name="height-request">34</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <signal name="clicked" handler="dbutton_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">270</property>
+            <property name="y">178</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="warning">
+            <property name="width-request">162</property>
+            <property name="height-request">80</property>
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="label" translatable="yes">warning: Current exceeds limit</property>
+            <attributes>
+              <attribute name="font-desc" value="Helvetica Bold 11"/>
+              <attribute name="foreground" value="#c0c01c1c2828"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="x">3</property>
+            <property name="y">272</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkEntry" id="step">
+            <property name="width-request">168</property>
+            <property name="height-request">34</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="text" translatable="yes">0.1</property>
+            <property name="input-purpose">number</property>
+          </object>
+          <packing>
+            <property name="x">326</property>
+            <property name="y">179</property>
           </packing>
         </child>
       </object>

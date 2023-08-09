@@ -67,6 +67,12 @@ class UI:
             self.warninglabel.set_label("Couldn't apply voltage, current will exceed 100mA")
         else:
             self.desiredVoltage = self.Vout
+    def stop_clicked(self, Stop):
+    	desiredVoltage=0
+
+   	def updatePWMlabel(self, PWM, cycle):
+   		self.label = self.builder.get_object("PWM")
+   		self.label.set_label(str(cycle),"%")
 
     def get_voltageDesired_button_value(self, v_desired):
         self.Entry = self.builder.get_object("Entry")
@@ -238,6 +244,7 @@ if __name__ == "__main__":
     print("embedded loop started")
     while True:
         uiapp.main()
+        uiapp.updatePWMlabel(embeddedObject.dutyCycle)
         embeddedObject.checkForDesiredVoltage(uiapp)
         embeddedObject.setCycle(uiapp)
         embeddedObject.manualControl(uiapp)

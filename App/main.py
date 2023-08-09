@@ -134,7 +134,7 @@ class Embedded:
         self.prevDesiredVoltage = ui.desiredVoltage
 
     def manualControl(self, ui):
-        self.dutyCycle = self.dutyCycle + ui.CycleIncrease + ui.CycleDecrease
+        self.dutyCycle = round((self.dutyCycle + ui.CycleIncrease + ui.CycleDecrease),3)
         ui.CycleIncrease = 0
         ui.CycleDecrease = 0
 

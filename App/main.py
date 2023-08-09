@@ -36,7 +36,7 @@ UI_FILE = "UI.xml"
 
 class UI:
     desiredVoltage = 0
-    resistance
+    resistance = 0
     CycleIncrease = 0
     CycleDecrease = 0
 

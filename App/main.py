@@ -233,5 +233,6 @@ if __name__ == "__main__":
     while True:
         uiapp.main()
         embeddedObject.checkForDesiredVoltage(uiapp)
+        embeddedObject.setCycle()
         embeddedObject.pwmSignal(embeddedObject.dutyCycle, 20)
         sleep(embeddedObject.timestep)

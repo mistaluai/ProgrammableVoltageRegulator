@@ -52,7 +52,7 @@ class UI:
         	self.warninglabel = self.builder.get_object("warning")
         	self.warninglabel.set_label("Couldn't apply voltage, current will exceed 100mA")
         else:
-        	desiredVoltage = self.Vout
+        	self.desiredVoltage = self.Vout
         print(self.Vout)
 
     def get_voltageDesired_button_value(self, v_desired):

@@ -67,6 +67,7 @@ class UI:
             self.warninglabel.set_label("Couldn't apply voltage, current will exceed 100mA")
         else:
             self.desiredVoltage = self.Vout
+            self.warninglabel.set_label("")
 
     def stop_clicked(self, Stop):
         self.desiredVoltage = 0

@@ -177,7 +177,6 @@
             <property name="height-request">80</property>
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="label" translatable="yes">warning: Current exceeds limit</property>
             <attributes>
               <attribute name="font-desc" value="Helvetica Bold 11"/>
               <attribute name="foreground" value="#c0c01c1c2828"/>

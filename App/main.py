@@ -207,7 +207,7 @@ class Embedded:
         if self.currentFrequency != frequency or self.currentCycle != duty_cycle:
             self.disablePWM()
             self.enablePWM(duty_cycle, frequency)
-            print("changes done")
+            print("PWM changed")
 
     def disablePWM(self):
         try:
@@ -231,8 +231,7 @@ if __name__ == "__main__":
     embeddedObject = Embedded(uiapp)
     print("embedded loop started")
     while True:
-        # embeddedObject.debugAnalogInput()
-        #print(uiapp.desiredVoltage)
         uiapp.main()
         embeddedObject.checkForDesiredVoltage(uiapp)
+        embeddedObject.pwmSignal(embeddedMain.dutyCycle, 20)
         sleep(embeddedObject.timestep)

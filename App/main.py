@@ -39,7 +39,10 @@ class UI:
     resistance
     CycleIncrease = 0
     CycleDecrease = 0
-    
+    def increaseManualControlValue(self,increase):
+        CycleIncrease = 0.1 
+    def decreaseManualControlValue(self,decrease):
+        CycleDecrease = -0.1
     def __init__(self):
         self.builder = Gtk.Builder()
         self.builder.add_from_file(UI_FILE)

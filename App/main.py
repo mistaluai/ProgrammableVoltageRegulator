@@ -188,7 +188,7 @@ class Embedded:
     dutyCycle = 0
     currentFrequency = 0
 
-    def setCycle(self):
+    def setCycle(self, ui):
         if ui.resistance != 330 and ui.resistance != 560 and ui.resistance != 100:
             if ui.resistance > 100 and ui.resistance < 330:
                 self.dutyCycle = _100ohm[ui.desiredVoltage] if (ui.resistance < 215) else _330ohm[ui.desiredVoltage]

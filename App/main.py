@@ -76,6 +76,10 @@ class Embedded:
     _100ohm = dict({2.5:17, 3:22, 3.5:26, 4:31, 4.5:37, 5:44, 5.5:50})
     _330ohm = dict({2.5:5, 3:6, 3.5:4, 4:8, 4.5:9, 5:10.2, 5.5:11.9, 6:13.3, 6.5:14.7, 7:17, 7.5:19, 8:20.5, 8.5:23, 9:26, 9.5:29, 10:31, 10.5:35, 11:39, 11.5:42, 12:45})
     _560ohm = dict({2.5:2.6, 3:3.1, 3.5:4, 4:4.6, 4.5:5.3, 5:5.9, 5.5:7, 6:7.5, 6.5:8.3, 7:9.6, 7.5:9.6, 8:11.2, 8.5:12.2, 9:13.4, 9.5:14.7, 10:17, 10.5:19.5, 11:20.8, 11.5:23, 12:24})
+    
+
+    def interbolateCycle(self,Rl,Ri, Cyclei):
+    	return 3.66 * (self.Rl/self.Ri) * Cyclei
     # # analog channels
 
     # CH_inputVoltage = None
@@ -199,6 +203,7 @@ class Embedded:
 if __name__ == "__main__":
     uiapp = UI()
     embeddedObject = Embedded()
+    print(embeddedObject.interbolateCycle(100,560,embeddedObject._560ohm[5]))
     print("embedded loop started")
     while True:
         # embeddedObject.debugAnalogInput()

@@ -114,7 +114,7 @@ class Embedded:
     def checkForDesiredVoltage(self, ui):  # meant to be executed in the loop
         if self.prevDesiredVoltage != ui.desiredVoltage:
             print("voltage changed")
-        prevDesiredVoltage = ui.desiredVoltage
+        self.prevDesiredVoltage = ui.desiredVoltage
 
     # def PIDinit(self):
     #     self.integrator = 0

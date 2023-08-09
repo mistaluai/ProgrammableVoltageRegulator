@@ -50,7 +50,7 @@ class UI:
         self.resistance = float(self.Resistance.get_text())
         if (self.Vout/self.resistance)>0.1:
         	self.warninglabel = self.builder.get_object("warning")
-        	warninglabel.set_label("Couldn't apply voltage, current will exceed 100mA")
+        	self.warninglabel.set_label("Couldn't apply voltage, current will exceed 100mA")
         else:
         	desiredVoltage = self.Vout
         print(self.Vout)

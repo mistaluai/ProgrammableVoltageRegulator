@@ -74,7 +74,7 @@ class UI:
 
     def updatePWMlabel(self, cycle):
         self.label = self.builder.get_object("PWM")
-        self.label.set_label(str(cycle),"%")
+        self.label.set_label(str(cycle)+"%")
 
     def get_voltageDesired_button_value(self, v_desired):
         self.Entry = self.builder.get_object("Entry")

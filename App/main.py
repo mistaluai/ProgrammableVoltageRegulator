@@ -179,7 +179,7 @@ class Embedded:
 
     def enablePWM(self, duty_cycle, frequency):
         pwmScript = subprocess.Popen(
-            ["python", "/home/proj/Documents/embproj/Pi3BScripts/pwm.py", "23", str(frequency), str(duty_cycle)])
+            ["python", "/home/proj/Documents/embproj/Pi3BScripts/pwm.py", "13", str(frequency), str(duty_cycle)])
         self.currentCycle = duty_cycle
         self.currentFrequency = frequency
         print("pwm enabled")

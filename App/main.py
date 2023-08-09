@@ -197,19 +197,24 @@ class Embedded:
     currentFrequency = 0
 
     def setCycle(self, ui):
-        if ui.resistance != 330 and ui.resistance != 560 and ui.resistance != 100:
-            if ui.resistance > 100 and ui.resistance < 330:
-                self.dutyCycle = self._100ohm[ui.desiredVoltage] if (ui.resistance < 215) else self._330ohm[ui.desiredVoltage]
-            elif ui.resistance > 330 and ui.resistance < 560:
-                self.dutyCycle = self._330ohm[ui.desiredVoltage] if (ui.resistance < 445) else self._560ohm[ui.desiredVoltage]
-        elif ui.resistance == 100:
-            self.dutyCycle = self._100ohm[ui.desiredVoltage]
-        elif ui.resistance == 330:
-            self.dutyCycle = self._330ohm[ui.desiredVoltage]
-        elif ui.resistance == 560:
-            self.dutyCycle = self._560ohm[ui.desiredVoltage]
-        else:
-            self.dutyCycle = 0
+    	if ui.prevDesiredVoltage != ui.desiredVoltage:
+	    	if ui.desiredVoltage != 0:
+		        if ui.resistance != 330 and ui.resistance != 560 and ui.resistance != 100:
+		            if ui.resistance > 100 and ui.resistance < 330:
+		                self.dutyCycle = self._100ohm[ui.desiredVoltage] if (ui.resistance < 215) else self._330ohm[ui.desiredVoltage]
+		            elif ui.resistance > 330 and ui.resistance < 560:
+		                self.dutyCycle = self._330ohm[ui.desiredVoltage] if (ui.resistance < 445) else self._560ohm[ui.desiredVoltage]
+		        elif ui.resistance == 100:
+		            self.dutyCycle = self._100ohm[ui.desiredVoltage]
+		        elif ui.resistance == 330:
+		            self.dutyCycle = self._330ohm[ui.desiredVoltage]
+		        elif ui.resistance == 560:
+		            self.dutyCycle = self._560ohm[ui.desiredVoltage]
+		        else:
+		            self.dutyCycle = 0
+		    else: 
+		    	self.dutyCycle = 0
+		ui.prevDesiredVoltage = ui.desiredVoltage
 
     def manualControl(self, ui):
         self.dutyCycle = self.dutyCycle + ui.CycleIncrease + ui.CycleDecrease
@@ -247,7 +252,7 @@ if __name__ == "__main__":
     while True:
         uiapp.main()
         uiapp.updatePWMlabel(embeddedObject.dutyCycle)
-        embeddedObject.checkForDesiredVoltage(uiapp)
+        #embeddedObject.checkForDesiredVoltage(uiapp)
         embeddedObject.setCycle(uiapp)
         embeddedObject.manualControl(uiapp)
         embeddedObject.pwmSignal(embeddedObject.dutyCycle, 20)

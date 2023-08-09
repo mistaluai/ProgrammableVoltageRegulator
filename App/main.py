@@ -46,25 +46,14 @@ class UI:
     def button_clicked(self, Apply):
         self.Entry = self.builder.get_object("Entry")
         self.Vout = float(self.Entry.get_text())
+        self.Resistance = self.builder.get_object("resistance")
+        self.resistance = float(self.Resistance.get_text())
+        if (Vout/resistance)>0.1:
+        	self.warninglabel = self.builder.get_object("warning")
+        	warninglabel.set_label("Couldn't apply voltage, current will exceed 100mA")
+        else:
+        	desiredVoltage = Vout
         print(self.Vout)
-
-        self.Current = self.builder.get_object("Current")
-        self.Current.set_text(str(1))
-
-        self.power_consumption = self.builder.get_object("power_consumption")
-        self.power_consumption.set_text(str(3))
-
-    def updateOutputVoltage(self, outputVoltage):
-        self.Vout1 = self.builder.get_object("V_out")
-        self.Vout1.set_text(str(outputVoltage) + "v")
-
-    def updateCurrent(self, current):
-        self.Current = self.builder.get_object("Current")
-        self.Current.set_text(str(current) + "mA")
-
-    def updatePowerConsumption(self, powerconsumption):
-        self.PowerConsumption = self.builder.get_object("power_consumption")
-        self.PowerConsumption.set_text(str(powerconsumption) + "mWatt")
 
     def get_voltageDesired_button_value(self, v_desired):
         self.Entry = self.builder.get_object("Entry")

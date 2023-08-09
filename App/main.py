@@ -34,7 +34,10 @@ outputVoltage_factor = 52 / 7
 
 
 class UI:
-	desiredVoltage = 0
+    
+    desiredVoltage = 0
+    
+    
     def __init__(self):
         self.builder = Gtk.Builder()
         self.builder.add_from_file(UI_FILE)
@@ -54,7 +57,7 @@ class UI:
         	self.warninglabel.set_label("Couldn't apply voltage, current will exceed 100mA")
         else:
         	self.desiredVoltage = self.Vout
-        #print(self.Vout)
+      
 
     def get_voltageDesired_button_value(self, v_desired):
         self.Entry = self.builder.get_object("Entry")

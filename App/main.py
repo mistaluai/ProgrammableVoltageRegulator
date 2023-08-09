@@ -180,12 +180,17 @@ class Embedded:
     def setCycle(self):
     	if ui.resistance != 330 and ui.resistance != 560 and ui.resistance != 100:
     		if ui.resistance > 100 and ui.resistance < 330:
-    			dutyCycle = _100ohm[ui.desiredVoltage] if (ui.resistance < 215) else _330ohm[ui.desiredVoltage]
+    			self.dutyCycle = _100ohm[ui.desiredVoltage] if (ui.resistance < 215) else _330ohm[ui.desiredVoltage]
     		elif ui.resistance > 330 and ui.resistance < 560:
-    			dutyCycle = _330ohm[ui.desiredVoltage] if (ui.resistance < 445) else _560ohm[ui.desiredVoltage]
+    			self.dutyCycle = _330ohm[ui.desiredVoltage] if (ui.resistance < 445) else _560ohm[ui.desiredVoltage]
+    	elif ui.resistance == 100:
+    		self.dutyCycle = _100ohm[ui.desiredVoltage]
+    	elif ui.resistance == 330:
+    		self.dutyCycle = _330ohm[ui.desiredVoltage]
+    	elif ui.resistance == 560:
+    		self.dutyCycle = _560ohm[ui.desiredVoltage]
     	else:
     		dutyCycle = 0
-
 
     def pwmSignal(self, duty_cycle, frequency):
         if self.currentFrequency != frequency or self.currentCycle != duty_cycle:

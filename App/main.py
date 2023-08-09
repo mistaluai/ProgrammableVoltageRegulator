@@ -79,7 +79,8 @@ class Embedded:
     
 
     def interbolateCycle(self,Rl,Ri, Cyclei):
-    	return 3.66 * (self.Rl/self.Ri) * Cyclei
+    	cycle = 3.66 * (Rl/Ri) * Cyclei
+    	return cycle
     # # analog channels
 
     # CH_inputVoltage = None
@@ -203,7 +204,6 @@ class Embedded:
 if __name__ == "__main__":
     uiapp = UI()
     embeddedObject = Embedded()
-    print(embeddedObject.interbolateCycle(100,560,embeddedObject._560ohm[5]))
     print("embedded loop started")
     while True:
         # embeddedObject.debugAnalogInput()

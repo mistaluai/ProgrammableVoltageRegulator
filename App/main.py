@@ -203,6 +203,12 @@ class Embedded:
         else:
             self.dutyCycle = 0
 
+    def manualControl(self, ui):
+    	self.dutyCycle = self.dutyCycle + ui.CycleIncrease + ui.CycleDecrease
+    	ui.CycleIncrease=0
+    	ui.CycleDecrease=0
+
+
     def pwmSignal(self, duty_cycle, frequency):
         if self.currentFrequency != frequency or self.currentCycle != duty_cycle:
             self.disablePWM()
@@ -234,5 +240,6 @@ if __name__ == "__main__":
         uiapp.main()
         embeddedObject.checkForDesiredVoltage(uiapp)
         embeddedObject.setCycle(uiapp)
+        embeddedObject.manualControl(uiapp)
         embeddedObject.pwmSignal(embeddedObject.dutyCycle, 20)
         sleep(embeddedObject.timestep)

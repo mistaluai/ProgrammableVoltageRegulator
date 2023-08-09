@@ -36,7 +36,8 @@ outputVoltage_factor = 52 / 7
 class UI:
     
     desiredVoltage = 0
-    
+    CycleIncrease = 0
+    CycleDecrease = 0
     
     def __init__(self):
         self.builder = Gtk.Builder()

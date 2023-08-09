@@ -36,6 +36,7 @@ UI_FILE = "UI.xml"
 class UI:
     
     desiredVoltage = 0
+    resistance
     CycleIncrease = 0
     CycleDecrease = 0
     
@@ -77,10 +78,6 @@ class Embedded:
     _330ohm = dict({2.5:5, 3:6, 3.5:4, 4:8, 4.5:9, 5:10.2, 5.5:11.9, 6:13.3, 6.5:14.7, 7:17, 7.5:19, 8:20.5, 8.5:23, 9:26, 9.5:29, 10:31, 10.5:35, 11:39, 11.5:42, 12:45})
     _560ohm = dict({2.5:2.6, 3:3.1, 3.5:4, 4:4.6, 4.5:5.3, 5:5.9, 5.5:7, 6:7.5, 6.5:8.3, 7:9.6, 7.5:9.6, 8:11.2, 8.5:12.2, 9:13.4, 9.5:14.7, 10:17, 10.5:19.5, 11:20.8, 11.5:23, 12:24})
     
-
-    def interbolateCycle(self,Rl,Ri, Cyclei):
-    	cycle = 3.66 * (Rl/Ri) * Cyclei
-    	return cycle
     # # analog channels
 
     # CH_inputVoltage = None
@@ -97,9 +94,9 @@ class Embedded:
     # prevError = 0
     # prevMeasurment = 0
     # error = 0
-    globalDutyCycle = 0
+    ui = None
 
-    def __init__(self):
+    def __init__(self,ui):
         # # Analog To Digital
         # # create the spi bus
         # spi = busio.SPI(clock=board.SCK, MISO=board.MISO, MOSI=board.MOSI)
@@ -117,6 +114,7 @@ class Embedded:
         # print("Diffrential Channels Defined")
         # board
         GPIO.setmode(GPIO.BCM)
+        self.ui = ui
 
     prevDesiredVoltage = 0
 
@@ -176,7 +174,18 @@ class Embedded:
     #         current) + "\nTotal Resistance (Ω): " + str(resistance))
 
     currentCycle = 0
-    currentFrequency = 0;
+    dutyCycle = 0
+    currentFrequency = 0
+
+    def setCycle(self):
+    	if ui.resistance != 330 and ui.resistance != 560 and ui.resistance != 100:
+    		if ui.resistance > 100 and ui.resistance < 330:
+    			dutyCycle = _100ohm[ui.desiredVoltage] if (ui.resistance < 215) else _330ohm[ui.desiredVoltage]
+    		elif ui.resistance > 330 and ui.resistance < 560:
+    			dutyCycle = _330ohm[ui.desiredVoltage] if (ui.resistance < 445) else _560ohm[ui.desiredVoltage]
+    	else:
+    		dutyCycle = 0
+
 
     def pwmSignal(self, duty_cycle, frequency):
         if self.currentFrequency != frequency or self.currentCycle != duty_cycle:
@@ -203,7 +212,7 @@ class Embedded:
 
 if __name__ == "__main__":
     uiapp = UI()
-    embeddedObject = Embedded()
+    embeddedObject = Embedded(uiapp)
     print("embedded loop started")
     while True:
         # embeddedObject.debugAnalogInput()

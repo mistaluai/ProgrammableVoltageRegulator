@@ -67,14 +67,13 @@ class UI:
             self.warninglabel.set_label("Couldn't apply voltage, current will exceed 100mA")
         else:
             self.desiredVoltage = self.Vout
-    
-    
+
     def stop_clicked(self, Stop):
-        self.desiredVoltage=0
+        self.desiredVoltage = 0
 
     def updatePWMlabel(self, cycle):
         self.label = self.builder.get_object("PWM")
-        self.label.set_label(str(cycle)+"%")
+        self.label.set_label(str(cycle) + "%")
 
     def get_voltageDesired_button_value(self, v_desired):
         self.Entry = self.builder.get_object("Entry")
@@ -97,41 +96,9 @@ class Embedded:
         {2.5: 2.6, 3: 3.1, 3.5: 4, 4: 4.6, 4.5: 5.3, 5: 5.9, 5.5: 7, 6: 7.5, 6.5: 8.3, 7: 9.6, 7.5: 9.6, 8: 11.2,
          8.5: 12.2, 9: 13.4, 9.5: 14.7, 10: 17, 10.5: 19.5, 11: 20.8, 11.5: 23, 12: 24})
 
-    # # analog channels
-
-    # CH_inputVoltage = None
-    # CH_outputVoltage = None
-    # CH_shuntVoltage = None
-    # CH_pwmIN = None
-    # # pid variables
-    # Kp = 0
-    # Ki = 0
-    # Kd = 0
-    # integrator = 0
-    # maxIntegrator = 0
-    # diffrentiator = 0
-    # prevError = 0
-    # prevMeasurment = 0
-    # error = 0
     ui = None
 
     def __init__(self, ui):
-        # # Analog To Digital
-        # # create the spi bus
-        # spi = busio.SPI(clock=board.SCK, MISO=board.MISO, MOSI=board.MOSI)
-        # print("SPI Bus created")
-        # # create the cs (chip select)
-        # cs = digitalio.DigitalInOut(board.D5)
-        # # create the mcp object
-        # mcp = MCP.MCP3008(spi, cs)
-        # print("MCP Object created")
-        # # channels definition
-        # self.CH_inputVoltage = AnalogIn(mcp, MCP.P3, MCP.P2)
-        # self.CH_outputVoltage = AnalogIn(mcp, MCP.P1, MCP.P0)
-        # self.CH_shuntVoltage = AnalogIn(mcp, MCP.P4, MCP.P5)
-        # self.CH_pwmIN = AnalogIn(mcp, MCP.P6)
-        # print("Diffrential Channels Defined")
-        # board
         GPIO.setmode(GPIO.BCM)
         self.ui = ui
 
@@ -142,85 +109,34 @@ class Embedded:
             print("voltage changed")
         self.prevDesiredVoltage = ui.desiredVoltage
 
-    # def PIDinit(self):
-    #     self.integrator = 0
-    #     self.diffrentiator = 0
-    #     self.prevError = 0
-    #     self.error = 0
-    #     self.prevMeasurment = 0
-    #     self.globalDutyCycle = (desiredVoltage / inputVoltage) * 100
-
-    # def PIDupdate(self):
-    #     self.pid = 0
-    #     self.error = desiredVoltage - outputVoltage
-
-    #     self.proportional = self.Kp * self.error
-    #     self.integrator = self.integrator + self.error * self.timestep
-    #     self.diffrentiator = (self.error - self.prevError) / self.timestep
-
-    #     self.globalDutyCycle += self.pid
-    #     if self.globalDutyCycle > 100:
-    #         self.globalDutyCycle = 100
-    #     elif self.globalDutyCycle < 0:
-    #         self.globalDutyCycle = 0
-    #     self.prevError = error
-    #     self.prevMeasurment = outputVoltage
-
-    # def getInputVoltage(self):
-    #     inputVoltage = inputVoltage_factor * self.CH_inputVoltage.voltage
-
-    # def getOutputVoltage(self):
-    #     outputVoltage = outputVoltage_factor * self.CH_outputVoltage.voltage - self.CH_shuntVoltage.voltage;
-
-    # def getCurrent(self):
-    #     shuntVoltage = self.CH_shuntVoltage.voltage
-    #     current = shuntVoltage * 100;
-
-    # def getResistance(self):
-    #     if current != 0:
-    #         resistance = outputVoltage / current
-    #     else:
-    #         resistance = 0
-
-    # def debugAnalogInput(self):
-    #     print("about to call something")
-    #     self.getInputVoltage()
-    #     self.getOutputVoltage()
-    #     self.getCurrent()
-    #     self.getResistance()
-    #     print("Input Voltage (V): " + str(inputVoltage) + "\nOutput Voltage (V): " + str(
-    #         outputVoltage) + "\nShunt Voltage (V): " + str(shuntVoltage) + "\nTotal Current (mA): " + str(
-    #         current) + "\nTotal Resistance (Ω): " + str(resistance))
-
     currentCycle = 0
     dutyCycle = 0
     currentFrequency = 0
 
     def setCycle(self, ui):
-    	if ui.prevDesiredVoltage != ui.desiredVoltage:
-	    	if ui.desiredVoltage != 0:
-		        if ui.resistance != 330 and ui.resistance != 560 and ui.resistance != 100:
-		            if ui.resistance > 100 and ui.resistance < 330:
-		                self.dutyCycle = self._100ohm[ui.desiredVoltage] if (ui.resistance < 215) else self._330ohm[ui.desiredVoltage]
-		            elif ui.resistance > 330 and ui.resistance < 560:
-		                self.dutyCycle = self._330ohm[ui.desiredVoltage] if (ui.resistance < 445) else self._560ohm[ui.desiredVoltage]
-		        elif ui.resistance == 100:
-		            self.dutyCycle = self._100ohm[ui.desiredVoltage]
-		        elif ui.resistance == 330:
-		            self.dutyCycle = self._330ohm[ui.desiredVoltage]
-		        elif ui.resistance == 560:
-		            self.dutyCycle = self._560ohm[ui.desiredVoltage]
-		        else:
-		            self.dutyCycle = 0
-		    else: 
-		    	self.dutyCycle = 0
-		ui.prevDesiredVoltage = ui.desiredVoltage
+        if ui.prevDesiredVoltage != ui.desiredVoltage:
+            if ui.desiredVoltage != 0:
+                if ui.resistance != 330 and ui.resistance != 560 and ui.resistance != 100:
+                    if ui.resistance > 100 and ui.resistance < 330:
+                        self.dutyCycle = self._100ohm[ui.desiredVoltage] if (ui.resistance < 215) else self._330ohm[ui.desiredVoltage]
+                    elif ui.resistance > 330 and ui.resistance < 560:
+                        self.dutyCycle = self._330ohm[ui.desiredVoltage] if (ui.resistance < 445) else self._560ohm[ui.desiredVoltage]
+                elif ui.resistance == 100:
+                    self.dutyCycle = self._100ohm[ui.desiredVoltage]
+                elif ui.resistance == 330:
+                    self.dutyCycle = self._330ohm[ui.desiredVoltage]
+                elif ui.resistance == 560:
+                    self.dutyCycle = self._560ohm[ui.desiredVoltage]
+                else:
+                    self.dutyCycle = 0
+            else:
+                self.dutyCycle = 0
+        ui.prevDesiredVoltage = ui.desiredVoltage
 
     def manualControl(self, ui):
         self.dutyCycle = self.dutyCycle + ui.CycleIncrease + ui.CycleDecrease
-        ui.CycleIncrease=0
-        ui.CycleDecrease=0
-
+        ui.CycleIncrease = 0
+        ui.CycleDecrease = 0
 
     def pwmSignal(self, duty_cycle, frequency):
         if self.currentFrequency != frequency or self.currentCycle != duty_cycle:
@@ -252,7 +168,7 @@ if __name__ == "__main__":
     while True:
         uiapp.main()
         uiapp.updatePWMlabel(embeddedObject.dutyCycle)
-        #embeddedObject.checkForDesiredVoltage(uiapp)
+        # embeddedObject.checkForDesiredVoltage(uiapp)
         embeddedObject.setCycle(uiapp)
         embeddedObject.manualControl(uiapp)
         embeddedObject.pwmSignal(embeddedObject.dutyCycle, 20)

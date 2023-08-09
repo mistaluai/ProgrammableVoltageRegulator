@@ -19,7 +19,7 @@ from gi.repository import Gtk
 UI_FILE = "UI.xml"
 
 # global variables
-desiredVoltage = 0
+
 # analog variables
 inputVoltage = 0
 outputVoltage = 0
@@ -34,6 +34,7 @@ outputVoltage_factor = 52 / 7
 
 
 class UI:
+	desiredVoltage = 0
     def __init__(self):
         self.builder = Gtk.Builder()
         self.builder.add_from_file(UI_FILE)
@@ -53,7 +54,7 @@ class UI:
         	self.warninglabel.set_label("Couldn't apply voltage, current will exceed 100mA")
         else:
         	self.desiredVoltage = self.Vout
-        print(self.Vout)
+        #print(self.Vout)
 
     def get_voltageDesired_button_value(self, v_desired):
         self.Entry = self.builder.get_object("Entry")
@@ -107,60 +108,60 @@ class Embedded:
 
     prevDesiredVoltage = 0
 
-    def checkForDesiredVoltage(self):  # meant to be executed in the loop
-        if self.prevDesiredVoltage != desiredVoltage:
-            PIDinit()
-        prevDesiredVoltage = desiredVoltage
+    def checkForDesiredVoltage(self, ui):  # meant to be executed in the loop
+        if self.prevDesiredVoltage != ui.desiredVoltage:
+            print("voltage changed")
+        prevDesiredVoltage = ui.desiredVoltage
 
-    def PIDinit(self):
-        self.integrator = 0
-        self.diffrentiator = 0
-        self.prevError = 0
-        self.error = 0
-        self.prevMeasurment = 0
-        self.globalDutyCycle = (desiredVoltage / inputVoltage) * 100
+    # def PIDinit(self):
+    #     self.integrator = 0
+    #     self.diffrentiator = 0
+    #     self.prevError = 0
+    #     self.error = 0
+    #     self.prevMeasurment = 0
+    #     self.globalDutyCycle = (desiredVoltage / inputVoltage) * 100
 
-    def PIDupdate(self):
-        self.pid = 0
-        self.error = desiredVoltage - outputVoltage
+    # def PIDupdate(self):
+    #     self.pid = 0
+    #     self.error = desiredVoltage - outputVoltage
 
-        self.proportional = self.Kp * self.error
-        self.integrator = self.integrator + self.error * self.timestep
-        self.diffrentiator = (self.error - self.prevError) / self.timestep
+    #     self.proportional = self.Kp * self.error
+    #     self.integrator = self.integrator + self.error * self.timestep
+    #     self.diffrentiator = (self.error - self.prevError) / self.timestep
 
-        self.globalDutyCycle += self.pid
-        if self.globalDutyCycle > 100:
-            self.globalDutyCycle = 100
-        elif self.globalDutyCycle < 0:
-            self.globalDutyCycle = 0
-        self.prevError = error
-        self.prevMeasurment = outputVoltage
+    #     self.globalDutyCycle += self.pid
+    #     if self.globalDutyCycle > 100:
+    #         self.globalDutyCycle = 100
+    #     elif self.globalDutyCycle < 0:
+    #         self.globalDutyCycle = 0
+    #     self.prevError = error
+    #     self.prevMeasurment = outputVoltage
 
-    def getInputVoltage(self):
-        inputVoltage = inputVoltage_factor * self.CH_inputVoltage.voltage
+    # def getInputVoltage(self):
+    #     inputVoltage = inputVoltage_factor * self.CH_inputVoltage.voltage
 
-    def getOutputVoltage(self):
-        outputVoltage = outputVoltage_factor * self.CH_outputVoltage.voltage - self.CH_shuntVoltage.voltage;
+    # def getOutputVoltage(self):
+    #     outputVoltage = outputVoltage_factor * self.CH_outputVoltage.voltage - self.CH_shuntVoltage.voltage;
 
-    def getCurrent(self):
-        shuntVoltage = self.CH_shuntVoltage.voltage
-        current = shuntVoltage * 100;
+    # def getCurrent(self):
+    #     shuntVoltage = self.CH_shuntVoltage.voltage
+    #     current = shuntVoltage * 100;
 
-    def getResistance(self):
-        if current != 0:
-            resistance = outputVoltage / current
-        else:
-            resistance = 0
+    # def getResistance(self):
+    #     if current != 0:
+    #         resistance = outputVoltage / current
+    #     else:
+    #         resistance = 0
 
-    def debugAnalogInput(self):
-        print("about to call something")
-        self.getInputVoltage()
-        self.getOutputVoltage()
-        self.getCurrent()
-        self.getResistance()
-        print("Input Voltage (V): " + str(inputVoltage) + "\nOutput Voltage (V): " + str(
-            outputVoltage) + "\nShunt Voltage (V): " + str(shuntVoltage) + "\nTotal Current (mA): " + str(
-            current) + "\nTotal Resistance (Ω): " + str(resistance))
+    # def debugAnalogInput(self):
+    #     print("about to call something")
+    #     self.getInputVoltage()
+    #     self.getOutputVoltage()
+    #     self.getCurrent()
+    #     self.getResistance()
+    #     print("Input Voltage (V): " + str(inputVoltage) + "\nOutput Voltage (V): " + str(
+    #         outputVoltage) + "\nShunt Voltage (V): " + str(shuntVoltage) + "\nTotal Current (mA): " + str(
+    #         current) + "\nTotal Resistance (Ω): " + str(resistance))
 
     currentCycle = 0
     currentFrequency = 0;
@@ -194,6 +195,7 @@ if __name__ == "__main__":
     print("embedded loop started")
     while True:
         # embeddedObject.debugAnalogInput()
-        print(resistance)
+        print(uiapp.desiredVoltage)
         uiapp.main()
+        embeddedObject.checkForDesiredVoltage(uiapp)
         sleep(embeddedObject.timestep)

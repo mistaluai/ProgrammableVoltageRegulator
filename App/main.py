@@ -39,10 +39,7 @@ class UI:
     resistance
     CycleIncrease = 0
     CycleDecrease = 0
-    def increaseManualControlValue(self,increase):
-        CycleIncrease = 0.1 
-    def decreaseManualControlValue(self,decrease):
-        CycleDecrease = -0.1
+    
     def __init__(self):
         self.builder = Gtk.Builder()
         self.builder.add_from_file(UI_FILE)
@@ -51,6 +48,14 @@ class UI:
         self.window = self.builder.get_object("window")
         self.window_label = self.builder.get_object("Controller")
         self.window.show_all()
+
+    def button_clicked(self,increase):
+    	self.step = self.builder.get_object("step")
+        CycleIncrease = float(self.step.get_text()) 
+        
+    def button_clicked(self,decrease):
+        self.step = self.builder.get_object("step")
+        CycleIncrease = -1 * float(self.step.get_text()) 
 
     def button_clicked(self, Apply):
         self.Entry = self.builder.get_object("Entry")
